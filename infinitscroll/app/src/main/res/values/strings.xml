@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">infinite scroll</string>
+    <dimen name="texture_height">629dp</dimen>
+
 </resources>
