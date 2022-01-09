@@ -5,18 +5,11 @@ import android.graphics.Color;
 import java.util.Random;
 
 public class Seed {
-    public String[] array;
-    public String numberString;
-    public int seed;
+    private final int seed;
 
-    public Seed(String[] array, String numberString, int seed){
-        this.array = array;
-        this.numberString = numberString;
-        this.seed = seed;
-    }
-
-    public int getColor(){
-        return getColor(0);
+    public Seed(){
+        Random r = new Random();
+        this.seed = r.nextInt();
     }
 
     public int getColor(int position){

@@ -1,14 +1,9 @@
 package com.mako.infinitscroll;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.ColorSpace;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,10 +28,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        System.out.println("test");
         holder.view.setBackgroundColor(seed.getColor(position));
-        System.out.println(seed.getColor(position));
-
     }
 
     @Override
