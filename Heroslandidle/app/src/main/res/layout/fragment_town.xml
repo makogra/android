@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".tabs.TownFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/TownPlaceHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:gravity="center"
+        android:text="@string/town"
+        app:layout_constraintBottom_toTopOf="@+id/Buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Buttons"
+        android:layout_width="216dp"
+        android:layout_height="494dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/GoToExpeditionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/expeditionButton"
+            app:layout_constraintBottom_toTopOf="@+id/LoadButton"
+            app:layout_constraintEnd_toEndOf="@+id/LoadButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/LoadButton"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="goOnExpedition">
+
+        </Button>
+
+        <Button
+            android:id="@+id/SaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Zapisz"
+            app:layout_constraintBottom_toTopOf="@+id/ExitButton"
+            app:layout_constraintEnd_toEndOf="@+id/ExitButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/ExitButton"
+            app:layout_constraintTop_toBottomOf="@+id/LoadButton" />
+
+        <Button
+            android:id="@+id/LoadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Wczytaj"
+            app:layout_constraintBottom_toTopOf="@+id/SaveButton"
+            app:layout_constraintEnd_toEndOf="@+id/SaveButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/SaveButton"
+            app:layout_constraintTop_toBottomOf="@+id/GoToExpeditionButton" />
+
+        <Button
+            android:id="@+id/ExitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:onClick="exitButtonClicked"
+            android:text="Wyjdź"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SaveButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

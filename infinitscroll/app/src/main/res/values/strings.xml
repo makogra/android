@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">infinite scroll</string>
+    <string-array name="resources">
+        <item>drzewa</item>
+        <item>jagody</item>
+        <item>zwierzyna</item>
+        <item>kamień</item>
+        <item>złoto</item>
+        <item>żelazo</item>
+        <item>węgiel</item>
+        <item>zioło</item>
+        <item>miedź</item>
+        <item>ryba</item>
+        <item>glina</item>
+        <item>wodorosty</item>
+    </string-array>
 </resources>

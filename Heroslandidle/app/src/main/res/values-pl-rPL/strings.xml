@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hero\'s land idle</string>
+
+    <!-- Resources -->
+    <string name="wood">drewno</string>
+    <string name="berries">jagody</string>
+    <string name="animals">zwierzyna</string>
+    <string name="stone">kamień</string>
+    <string name="gold">złoto</string>
+    <string name="iron">żelazo</string>
+    <string name="coal">węgiel</string>
+    <string name="copper">miedź</string>
+    <string name="clay">glina</string>
+    <string name="herb">zioło</string>
+    <string name="fish">ryby</string>
+    <string name="seaweed">wodorosty</string>
+
+    <!-- Tabs -->
+    <string name="town">Miasto</string>
+    <string name="equipment">Ekwipunek</string>
+    <string name="buildings">Budynki</string>
+    <string name="upgrades">Ulepszenia</string>
+
+    <!-- buttons -->
+    <string name="expeditionButton">Wyrusz na wyprawę</string>
+
+    <string-array name="land_types">
+        <item>Las</item>
+        <item>Łąka</item>
+        <item>Góry</item>
+        <item>Bagno</item>
+        <item>Podziemia</item>
+    </string-array>
+</resources>

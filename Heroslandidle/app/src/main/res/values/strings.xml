@@ -1,5 +1,40 @@
 <resources>
-    <string name="app_name">Hero\'s land idle</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="app_name" translatable="false">Hero\'s land idle</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+
+    <!-- Resources -->
+    <string name="wood">wood</string>
+    <string name="berries">berries</string>
+    <string name="animals">animals</string>
+    <string name="stone">stone</string>
+    <string name="gold">gold</string>
+    <string name="iron">iron</string>
+    <string name="coal">coal</string>
+    <string name="copper">copper</string>
+    <string name="clay">clay</string>
+    <string name="herb">herb</string>
+    <string name="fish">fish</string>
+    <string name="seaweed">seaweed</string>
+
+    <!-- Tabs -->
+    <string name="town">Town</string>
+    <string name="equipment">Equipment</string>
+    <string name="buildings">Buildings</string>
+    <string name="upgrades">Upgrades</string>
+
+    <!-- buttons -->
+    <string name="expeditionButton">Go on expedition</string>
+
+    <string-array name="land_types">
+        <item>Forest</item>
+        <item>Meadow</item>
+        <item>Mountains</item>
+        <item>Swamp</item>
+        <item>Undergrounds</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_exploration" translatable="false">ExplorationActivity</string>
 </resources>

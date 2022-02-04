@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tabsArr">
+        <item>@string/town</item>
+        <item>@string/equipment</item>
+        <item>@string/buildings</item>
+        <item>@string/upgrades</item>
+    </array>
+
+    <array name="resourcesArr">
+        <item>@string/wood</item>
+        <item>@string/berries</item>
+        <item>@string/animals</item>
+        <item>@string/stone</item>
+        <item>@string/gold</item>
+        <item>@string/iron</item>
+        <item>@string/coal</item>
+        <item>@string/copper</item>
+        <item>@string/clay</item>
+        <item>@string/herb</item>
+        <item>@string/fish</item>
+        <item>@string/seaweed</item>
+    </array>
+
+    <array name="buildingsArr">
+
+    </array>
+</resources>
