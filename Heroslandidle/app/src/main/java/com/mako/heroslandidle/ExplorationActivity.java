@@ -1,10 +1,9 @@
 package com.mako.heroslandidle;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +33,27 @@ public class ExplorationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         player = new Player();
-        System.out.println(Arrays.toString(getResources().getStringArray(R.array.land_types)));
         Land land1 = new Land(getResources());
         displayLand(binding.getRoot(), land1);
+
+        Button harvestResLeft = (Button) findViewById(R.id.btn_harvest_resources_left);
+        harvestResLeft.setOnClickListener(view -> {
+           harvestResources(land1.getLeftResField());
+           TextView resAmount = findViewById(R.id.res_amount1);
+           resAmount.setText(Integer.toString(0));
+        });
+
+        Button harvestResRight = (Button) findViewById(R.id.btn_harvest_resources_right);
+        harvestResRight.setOnClickListener(view -> {
+            harvestResources(land1.getRightResField());
+            TextView resAmount = findViewById(R.id.res_amount2);
+            resAmount.setText(Integer.toString(0));
+        });
+    }
+
+    private void harvestResources(Land.ResourcesField resourcesField) {
+        player.addResources(resourcesField.getResTypeIndex(), resourcesField.getResAmount());
+        resourcesField.setResAmount(0);
     }
 
     public void goBack(View v){

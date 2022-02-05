@@ -2,6 +2,7 @@ package com.mako.heroslandidle;
 
 import android.content.res.Resources;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Land {
@@ -30,13 +31,14 @@ public class Land {
     class ResourcesField{
         
         //Config
-        private static final float RES_BOUND = 16.0F;
+        private static final float RES_BOUND = 8.0F;
         private static final int RES_MINIMUM = 16;
         
         // "res" stands for resources like gold, iron wood ...
         private String resType;
         private int resAmount;
         private String[] resTypes;
+        private int resTypeIndex;
 
         public String getResType() {
             return resType;
@@ -46,12 +48,22 @@ public class Land {
             return resAmount;
         }
 
+        public int getResTypeIndex(){
+            return resTypeIndex;
+        }
+
+        public void setResAmount(int amount){
+            if(amount < resAmount && amount >= 0)
+                resAmount = amount;
+        }
+
         ResourcesField(){
             resTypes = res.getStringArray(R.array.resourcesArr);
-            resType = resTypes[generateResTypeIndex()];
+            resTypeIndex = generateResTypeIndex();
+            resType = resTypes[resTypeIndex];
             resAmount = generateResAmount();
             
-            //TODO clear
+            //TODO clear sout
             System.out.println("resType = " + resType);
             System.out.println("resAmount = " + resAmount);
             System.out.println("BIOM = " + BIOM);
@@ -59,14 +71,17 @@ public class Land {
         
         private int generateResTypeIndex(){
             Random random = new Random();
-            float temp = (float) (resTypes.length * (BIOM_INDEX + 1) / BIOMS_LENGTH);
-
-            return (int)((temp * random.nextGaussian() / 2) + 2 * temp) % resTypes.length;
+            float temp = (float) (BIOMS_LENGTH / resTypes.length);
+            System.out.println("BIOM_INDEX = " + BIOM_INDEX);
+            System.out.println("temp = " + temp);
+            int result = (int)((temp * random.nextGaussian()) + (temp * (BIOM_INDEX+1))) % resTypes.length;
+            System.out.println("result = " + result);
+            return result;
         }
         
         private int generateResAmount(){
             Random random = new Random();
-            return (int) (RES_BOUND * random.nextGaussian()/2 + RES_BOUND) + RES_MINIMUM;
+            return (int) (RES_BOUND * random.nextGaussian() + RES_BOUND) + RES_MINIMUM;
         }
     }
 
@@ -75,6 +90,8 @@ public class Land {
 
         Random random = new Random();
         String[] bioms = res.getStringArray(R.array.land_types);
+        System.out.println("bioms = " + Arrays.toString(bioms));
+        System.out.println("bioms = " + bioms.length);
         BIOMS_LENGTH = bioms.length;
         BIOM_INDEX = random.nextInt(bioms.length);
         BIOM = bioms[BIOM_INDEX];

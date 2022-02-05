@@ -25,6 +25,8 @@
 
     <!-- buttons -->
     <string name="expeditionButton">Go on expedition</string>
+    <string name="btn_return_from_expedition">Come back</string>
+    <string name="btn_harvest_resources">Harvest resources</string>
 
     <string-array name="land_types">
         <item>Forest</item>

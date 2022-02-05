@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="goBack"
-            android:text="Go Back"
+            android:text="@string/btn_return_from_expedition"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +86,16 @@
             app:layout_constraintStart_toStartOf="@+id/res_type1"
             app:layout_constraintTop_toBottomOf="@+id/res_type1" />
 
+        <Button
+            android:id="@+id/btn_harvest_resources_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_harvest_resources"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toEndOf="@+id/res_amount1"
+            app:layout_constraintStart_toStartOf="@+id/res_amount1"
+            app:layout_constraintTop_toBottomOf="@+id/res_amount1" />
+
         <TextView
             android:id="@+id/res_type2"
             android:layout_width="wrap_content"
@@ -104,6 +114,16 @@
             app:layout_constraintEnd_toEndOf="@+id/res_type2"
             app:layout_constraintStart_toStartOf="@+id/res_type2"
             app:layout_constraintTop_toBottomOf="@+id/res_type2" />
+
+        <Button
+            android:id="@+id/btn_harvest_resources_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_harvest_resources"
+            app:layout_constraintBottom_toTopOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="@+id/res_amount2"
+            app:layout_constraintStart_toStartOf="@+id/res_amount2"
+            app:layout_constraintTop_toBottomOf="@+id/res_amount2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
