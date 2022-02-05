@@ -120,7 +120,7 @@ public class FullscreenActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.view_pager2);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle());
+        fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle(), getResources());
 
         viewPager2.setAdapter(fragmentAdapterTabs);
 

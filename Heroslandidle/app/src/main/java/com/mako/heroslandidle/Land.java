@@ -58,7 +58,7 @@ public class Land {
         }
 
         ResourcesField(){
-            resTypes = res.getStringArray(R.array.resourcesArr);
+            resTypes = res.getStringArray(R.array.resources_arr);
             resTypeIndex = generateResTypeIndex();
             resType = resTypes[resTypeIndex];
             resAmount = generateResAmount();

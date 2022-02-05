@@ -1,8 +1,6 @@
 package com.mako.heroslandidle;
 
-import android.annotation.SuppressLint;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -18,48 +16,38 @@ import com.mako.heroslandidle.tabs.TownFragment;
 import com.mako.heroslandidle.tabs.UpgradesFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class FragmentAdapterTabs extends FragmentStateAdapter {
 
-    /*
 
-    new Comparator<Integer>() {
-        final TypedArray typedArray = resources.obtainTypedArray(R.array.tabsArr);
-        @Override
-        public int compare(Integer o1, Integer o2) {
-            return typedArray.getResourceId(o1,-1) - typedArray.getResourceId(o2,-1);
-        }
-    }
+    private final Resources resources;
+    private List<String> availableTabs = new ArrayList<>();
+    private final List<String> allTabs ;//= (ArrayList<String>) Arrays.asList(resources.getStringArray(R.array.land_types));
 
-     */
 
-    Resources resources = Resources.getSystem();
-    ArrayList<Integer> availableTabs = new ArrayList<>();
-    private int itemCount = 0;
-
-    public FragmentAdapterTabs(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+    public FragmentAdapterTabs(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, Resources resources) {
         super(fragmentManager, lifecycle);
-        availableTabs.add(R.string.town);
-        availableTabs.add(R.string.equipment);
-        availableTabs.add(R.string.buildings);
-        updateItemCount();
+        this.resources = resources;
+        allTabs = Arrays.asList(resources.getStringArray(R.array.tabs_arr));
+        availableTabs.add(allTabs.get(0)); // Town
+        availableTabs.add(allTabs.get(1)); // Equipment
+        availableTabs.add(allTabs.get(2)); // Buildings
         //sort();
-
     }
 
-    @SuppressLint("NonConstantResourceId")
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        int id = availableTabs.get(position);
-        resources.finishPreloading();
-        switch (id){
-            case R.string.equipment:
+        switch (position){
+            case 1:
                 return new EquipmentFragment();
-            case R.string.buildings:
+            case 2:
                 return new BuildingsFragment();
-            case R.string.upgrades:
+            case 3:
                 return new UpgradesFragment();
             default:
                 return new TownFragment();
@@ -68,45 +56,32 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return itemCount;
+        return availableTabs.size();
     }
 
-    public boolean addFragment(int id){
-        if(!IdValidator(id))
+    public boolean addFragment(int index){
+        if(invalidIndex(index))
             return false;
-        if(availableTabs.add(id)){
-            updateItemCount();
+        if(alreadyIn(index))
+            return false;
+        if (availableTabs.add(allTabs.get(index))) {
             //sort();
             return true;
         }
         return false;
     }
 
-    private boolean IdValidator(int id) {
-        boolean validator;
-        TypedArray typedArray = resources.obtainTypedArray(R.array.tabsArr);
-        validator = typedArray.hasValue(id);
-        typedArray.recycle();
-        return validator;
+    private boolean alreadyIn(int index) {
+        return availableTabs.contains(allTabs.get(index));
     }
 
-    private void updateItemCount(){
-        itemCount = availableTabs.size();
+    private boolean invalidIndex(int index) {
+        String[] tabsArr = resources.getStringArray(R.array.tabs_arr);
+        return index < 0 || index >= tabsArr.length;
     }
 
     private void sort(){
-        /*availableTabs.sort(new Comparator<Integer>() {
-            // TODO find another way of sorting
-            @SuppressLint("Recycle")
-            final TypedArray typedArray = resources.obtainTypedArray(R.array.tabsArr);
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return typedArray.getResourceId(o1,-1) - typedArray.getResourceId(o2,-1);
-            }
-
-        });
-        Arrays.sort(availableTabs);
-        */
-        availableTabs.sort((o1,o2)->o1-o2);
+        //TODO fix problem with sort
+        availableTabs.sort(Comparator.comparingInt(o -> allTabs.indexOf(o)));
     }
 }
