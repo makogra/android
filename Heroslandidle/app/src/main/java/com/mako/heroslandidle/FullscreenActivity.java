@@ -119,8 +119,11 @@ public class FullscreenActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
 
+        player1 = new Player();
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle(), getResources());
+        fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle(), getResources(), player1);
+        //Pass player to fragment adapter
 
         viewPager2.setAdapter(fragmentAdapterTabs);
 
@@ -136,6 +139,9 @@ public class FullscreenActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.getPosition() == 1){
+                    System.out.println("tab = " + tab);
+                }
                 viewPager2.setCurrentItem(tab.getPosition());
             }
 
@@ -146,7 +152,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                System.out.println("FullscreenActivity.onTabReselected");
+                System.out.println("tab = " + tab);
             }
         });
 
@@ -157,7 +164,7 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
 
-        player1 = new Player();
+
 
 /*
         // Set up the user interaction to manually show or hide the system UI.

@@ -1,8 +1,11 @@
 package com.mako.heroslandidle.tabs;
 
+import android.media.MediaDrm;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.mako.heroslandidle.EquipmentAdapter;
+import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +25,10 @@ import com.mako.heroslandidle.R;
  * create an instance of this fragment.
  */
 public class EquipmentFragment extends Fragment {
+
+    private Player player;
+    private RecyclerView recyclerView;
+    private EquipmentAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +41,13 @@ public class EquipmentFragment extends Fragment {
 
     public EquipmentFragment() {
         // Required empty public constructor
+        System.out.println("EquipmentFragment.EquipmentFragment");
+    }
+
+    public EquipmentFragment(Player player){
+        this.player = player;
+        System.out.println("EquipmentFragment.EquipmentFragment");
+        System.out.println("player = " + player);
     }
 
     /**
@@ -58,12 +76,31 @@ public class EquipmentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        System.out.println("EquipmentFragment.onCreate");
+        //RecyclerView recyclerView = Objects.requireNonNull(this.getView()).findViewById(R.id.recycler_view_equipment);
+    }
+
+    @Override
+    public void onResume() {
+        adapter.notifyDataSetChanged();
+        super.onResume();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_equipment, container, false);
+        System.out.println("EquipmentFragment.onCreateView");
+        View view = inflater.inflate(R.layout.fragment_equipment, container, false);
+        recyclerView = view.findViewById(R.id.recycler_view_equipment);
+        adapter = new EquipmentAdapter(getContext(), getResources(), player);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Pass Resources to Equipment Adapter
+        /*
+        TextView textView = (TextView) view.findViewById(R.id.WoodCounter);
+        System.out.println(textView.getText());
+         */
+        return view;
     }
 }

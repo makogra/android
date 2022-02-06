@@ -37,7 +37,9 @@
         <item>Undergrounds</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- placeholders -->
+    <string name="placeholder_res_type" translatable="false">Resource type</string>
+    <string name="placeholder_res_amount" translatable="false">Resource amount</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_exploration" translatable="false">ExplorationActivity</string>
 </resources>

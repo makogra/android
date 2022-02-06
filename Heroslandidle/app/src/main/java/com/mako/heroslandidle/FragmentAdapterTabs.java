@@ -25,13 +25,15 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
 
 
     private final Resources resources;
+    private Player player;
     private List<String> availableTabs = new ArrayList<>();
     private final List<String> allTabs ;//= (ArrayList<String>) Arrays.asList(resources.getStringArray(R.array.land_types));
 
 
-    public FragmentAdapterTabs(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, Resources resources) {
+    public FragmentAdapterTabs(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, Resources resources, Player player) {
         super(fragmentManager, lifecycle);
         this.resources = resources;
+        this.player = player;
         allTabs = Arrays.asList(resources.getStringArray(R.array.tabs_arr));
         availableTabs.add(allTabs.get(0)); // Town
         availableTabs.add(allTabs.get(1)); // Equipment
@@ -44,7 +46,7 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new EquipmentFragment();
+                return new EquipmentFragment(player);
             case 2:
                 return new BuildingsFragment();
             case 3:
