@@ -75,9 +75,6 @@ public class EquipmentFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        System.out.println("EquipmentFragment.onCreate");
-        //RecyclerView recyclerView = Objects.requireNonNull(this.getView()).findViewById(R.id.recycler_view_equipment);
     }
 
     @Override
@@ -89,18 +86,11 @@ public class EquipmentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        System.out.println("EquipmentFragment.onCreateView");
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_equipment);
         adapter = new EquipmentAdapter(getContext(), getResources(), player);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        // Pass Resources to Equipment Adapter
-        /*
-        TextView textView = (TextView) view.findViewById(R.id.WoodCounter);
-        System.out.println(textView.getText());
-         */
         return view;
     }
 }

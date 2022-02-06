@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Player  implements Serializable {
 
     private int[] equipment;
-    private long money = 0;
+    private int money = 0;
 
     Player(){
         equipment = new int[Equipment.values().length];
@@ -23,11 +23,11 @@ public class Player  implements Serializable {
         return equipment[index];
     }
 
-    public boolean addMoney(long money){
+    public boolean addMoney(int money){
         if (money <= 0)
             return false;
-        if (Long.MAX_VALUE - this.money < money)
-            this.money = Long.MAX_VALUE;
+        if (Integer.MAX_VALUE - this.money < money)
+            this.money = Integer.MAX_VALUE;
             // Give information about over flow
         else
             this.money += money;

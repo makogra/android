@@ -13,16 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.EquipmentViewHolder> {
 
-    private Resources res;
-    private Context context;
-    private Player player;
-    private String[] resources;
-    private long money;
+    private final Context context;
+    private final Player player;
+    private final String[] resources;
+    private int money;
 
 
     public EquipmentAdapter(Context context, Resources res, Player player) {
         this.context = context;
-        this.res = res;
         this.player = player;
         this.resources = res.getStringArray(R.array.resources_arr);
     }
@@ -38,10 +36,6 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.Equi
 
     @Override
     public void onBindViewHolder(@NonNull EquipmentViewHolder holder, int position) {
-        System.out.println("holder = " + holder);
-        System.out.println("holder.resourceType = " + holder.resourceType);
-        System.out.println("holder.resourceAmount = " + holder.resourceAmount);
-        System.out.println("player = " + player.getResource(0));
         holder.resourceType.setText(resources[position]);
         holder.resourceAmount.setText(Integer.toString(player.getResource(position)));
     }

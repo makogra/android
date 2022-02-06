@@ -27,7 +27,7 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
     private final Resources resources;
     private Player player;
     private List<String> availableTabs = new ArrayList<>();
-    private final List<String> allTabs ;//= (ArrayList<String>) Arrays.asList(resources.getStringArray(R.array.land_types));
+    private final List<String> allTabs ;
 
 
     public FragmentAdapterTabs(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle, Resources resources, Player player) {
