@@ -42,4 +42,7 @@
     <string name="placeholder_res_amount" translatable="false">Resource amount</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_exploration" translatable="false">ExplorationActivity</string>
+    
+    <!--    credits    -->
+    <string name="credit_gui_buttons" translatable="false"><a href="https://www.freepik.com/vectors/background">Background vector created by upklyak - www.freepik.com</a></string>
 </resources>
