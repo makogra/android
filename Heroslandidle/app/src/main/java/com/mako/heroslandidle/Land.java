@@ -59,6 +59,7 @@ public class Land {
 
         ResourcesField(){
             resTypes = res.getStringArray(R.array.resources_arr);
+            System.out.println("resTypes = " + Arrays.toString(resTypes));
             resTypeIndex = generateResTypeIndex();
             resType = resTypes[resTypeIndex];
             resAmount = generateResAmount();
@@ -71,10 +72,12 @@ public class Land {
         
         private int generateResTypeIndex(){
             Random random = new Random();
-            float temp = (float) (BIOMS_LENGTH / resTypes.length);
+            float temp = resTypes.length / (float) BIOMS_LENGTH;
             System.out.println("BIOM_INDEX = " + BIOM_INDEX);
+            System.out.println("resTypes.length = " + resTypes.length);
             System.out.println("temp = " + temp);
             int result = (int)((temp * random.nextGaussian()) + (temp * (BIOM_INDEX+1))) % resTypes.length;
+            result = Math.abs(result);
             System.out.println("result = " + result);
             return result;
         }
@@ -95,6 +98,8 @@ public class Land {
         BIOMS_LENGTH = bioms.length;
         BIOM_INDEX = random.nextInt(bioms.length);
         BIOM = bioms[BIOM_INDEX];
+        System.out.println("BIOMS_LENGTH = " + BIOMS_LENGTH);
+        System.out.println("random = " + random.nextInt(BIOMS_LENGTH));
 
         leftResField = new ResourcesField();
         rightResField = new ResourcesField();

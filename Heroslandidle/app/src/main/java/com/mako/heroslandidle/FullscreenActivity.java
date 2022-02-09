@@ -53,9 +53,9 @@ public class FullscreenActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
 
-        player1 = new Player(getResources());
+        Resources resources = getResources();
 
-        Resources resources = super.getResources();
+        player1 = new Player(resources);
 
         createTabs();
         addTabs(resources);

@@ -41,14 +41,10 @@ public class EquipmentFragment extends Fragment {
     private String mParam2;
 
     public EquipmentFragment() {
-        // Required empty public constructor
-        System.out.println("EquipmentFragment.EquipmentFragment");
     }
 
     public EquipmentFragment(Player player){
         this.player = player;
-        System.out.println("EquipmentFragment.EquipmentFragment");
-        System.out.println("player = " + player);
     }
 
     /**
