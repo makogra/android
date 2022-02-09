@@ -163,35 +163,10 @@ public class FullscreenActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-
-
-
-/*
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggle();
-            }
-        });*/
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //binding.dummyButton.setOnTouchListener(mDelayHideTouchListener);
     }
 
     public void exitButtonClicked(View v){
         finishAndRemoveTask();
-    }
-
-    private int woodAmount = 0;
-
-    public void addWood(View v){
-        int index = Equipment.WOOD.index;
-        TextView woodCounter = findViewById(R.id.WoodCounter);
-        player1.addResources(index, 1);
-        woodCounter.setText("" + player1.getResource(index));
     }
 
     public void goOnExpedition(View v){
