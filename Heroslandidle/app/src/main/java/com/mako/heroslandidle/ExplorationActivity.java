@@ -32,18 +32,18 @@ public class ExplorationActivity extends AppCompatActivity {
         com.mako.heroslandidle.databinding.ActivityExplorationBinding binding = ActivityExplorationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        player = new Player();
+        player = new Player(getResources());
         Land land1 = new Land(getResources());
         displayLand(binding.getRoot(), land1);
 
-        Button harvestResLeft = (Button) findViewById(R.id.btn_harvest_resources_left);
+        Button harvestResLeft = findViewById(R.id.btn_harvest_resources_left);
         harvestResLeft.setOnClickListener(view -> {
            harvestResources(land1.getLeftResField());
            TextView resAmount = findViewById(R.id.res_amount1);
            resAmount.setText(Integer.toString(0));
         });
 
-        Button harvestResRight = (Button) findViewById(R.id.btn_harvest_resources_right);
+        Button harvestResRight = findViewById(R.id.btn_harvest_resources_right);
         harvestResRight.setOnClickListener(view -> {
             harvestResources(land1.getRightResField());
             TextView resAmount = findViewById(R.id.res_amount2);

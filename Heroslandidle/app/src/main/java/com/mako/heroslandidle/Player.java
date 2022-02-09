@@ -1,6 +1,6 @@
 package com.mako.heroslandidle;
 
-import com.mako.heroslandidle.Enums.Equipment;
+import android.content.res.Resources;
 
 import java.io.Serializable;
 
@@ -9,8 +9,9 @@ public class Player  implements Serializable {
     private int[] equipment;
     private int money = 0;
 
-    Player(){
-        equipment = new int[Equipment.values().length];
+
+    Player(Resources resources){
+        equipment = new int[resources.getStringArray(R.array.resources_arr).length];
     }
 
     public int[] getEquipment() {
@@ -34,16 +35,15 @@ public class Player  implements Serializable {
         return true;
     }
 
-    public boolean addResources(int index, int amount){
+    public void addResources(int index, int amount){
         if(InvalidIndex(index) || amount <= 0)
-            return false;
+            return;
         // OverFlow protection
         if (Integer.MAX_VALUE - amount < equipment[index])
             changeResources(index,Integer.MAX_VALUE-equipment[index]);
             // Give information about over flow
         else
             changeResources(index, amount);
-        return true;
     }
 
     public boolean removeResources(int index, int amount){

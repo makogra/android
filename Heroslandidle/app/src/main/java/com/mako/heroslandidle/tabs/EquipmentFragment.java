@@ -1,5 +1,6 @@
 package com.mako.heroslandidle.tabs;
 
+import android.annotation.SuppressLint;
 import android.media.MediaDrm;
 import android.os.Bundle;
 
@@ -77,6 +78,7 @@ public class EquipmentFragment extends Fragment {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onResume() {
         adapter.notifyDataSetChanged();
