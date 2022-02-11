@@ -60,10 +60,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             setMaxAndDisable(holder.button);
         } else {
             holder.button.setOnClickListener(view -> {
-                build();
                 currentBuildingLvl.getAndIncrement();
                 TextView tv_lvl = holder.lvl;
-                System.out.println(currentBuildingLvl.get());
                 tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
                 if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
                     setMaxAndDisable(holder.button);
@@ -75,10 +73,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     @Override
     public int getItemCount() {
         return buildingsTypes.length;
-    }
-
-    private void increaseLvl(int currentBuildingLvl) {
-        ++currentBuildingLvl;
     }
 
     private boolean isMaxBuildingLvl(int position, Button button, int lvl) {
@@ -93,9 +87,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         button.setEnabled(false);
     }
 
-    private void build() {
-        System.out.println("build");
-    }
 
     public class BuildingsViewHolder extends RecyclerView.ViewHolder {
 
