@@ -37,10 +37,10 @@
         <item>Undergrounds</item>
     </string-array>
 
-    <string-array name="buildings_types" translatable="false">
-        <item>Targowisko</item>
-        <item>Katedra</item>
-        <item>Gildia Poszukiwaczy przygód</item>
+    <string-array name="buildings_types">
+        <item>Marketplace</item>
+        <item>Cathedral</item>
+        <item>Adventures\' Guild</item>
     </string-array>
 
     <!-- placeholders -->

@@ -33,4 +33,10 @@
         <item>Bagno</item>
         <item>Podziemia</item>
     </string-array>
+
+    <string-array name="buildings_types">
+        <item>Targowisko</item>
+        <item>Katedra</item>
+        <item>Gildia Poszukiwaczy Przygód</item>
+    </string-array>
 </resources>
