@@ -11,13 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.BuildingsViewHolder> {
 
-    private Context context;
-    private Resources res;
+    private final Context context;
+    private final Resources res;
     private Player player;
     private String[] buildingsTypes,
-                    buildingsDescriptions;
+            buildingsDescriptions;
     private int[] buildingsMaxLvls;
 
     public BuildingsAdapter(Context context, Resources res, Player player) {
@@ -33,7 +35,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         initialize();
     }
 
-    private void initialize(){
+    private void initialize() {
         buildingsTypes = res.getStringArray(R.array.buildings_types);
         buildingsDescriptions = res.getStringArray(R.array.buildings_descriptions);
         buildingsMaxLvls = res.getIntArray(R.array.buildings_max_lvls);
@@ -53,16 +55,18 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         holder.type.setText(buildingsTypes[position]);
         holder.description.setText(buildingsDescriptions[position]);
 
-        int currentBuildingLvl = Integer.parseInt(holder.lvl.getText().toString());
-        if(isMaxBuildingLvl(position, holder.button, currentBuildingLvl)){
+        AtomicInteger currentBuildingLvl = new AtomicInteger(Integer.parseInt(holder.lvl.getText().toString()));
+        if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
             setMaxAndDisable(holder.button);
         } else {
-            holder.button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    build();
-                    TextView tv_lvl = view.findViewById(R.id.buildings_row_lvl_txt_numeric);
-
+            holder.button.setOnClickListener(view -> {
+                build();
+                currentBuildingLvl.getAndIncrement();
+                TextView tv_lvl = holder.lvl;
+                System.out.println(currentBuildingLvl.get());
+                tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
+                if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
+                    setMaxAndDisable(holder.button);
                 }
             });
         }
@@ -73,28 +77,32 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         return buildingsTypes.length;
     }
 
-    private boolean isMaxBuildingLvl(int position ,Button button, int lvl){
+    private void increaseLvl(int currentBuildingLvl) {
+        ++currentBuildingLvl;
+    }
+
+    private boolean isMaxBuildingLvl(int position, Button button, int lvl) {
         int maxBuildingLvl = buildingsMaxLvls[position];
 
 
         return (lvl == maxBuildingLvl && button.isEnabled());
     }
 
-    private void setMaxAndDisable(Button button){
+    private void setMaxAndDisable(Button button) {
         button.setText(R.string.btn_build_max);
         button.setEnabled(false);
     }
 
-    private void build(){
+    private void build() {
         System.out.println("build");
     }
 
     public class BuildingsViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView type,
-                        description,
-                        lvl;
-        private Button button;
+        private final TextView type;
+        private final TextView description;
+        private final TextView lvl;
+        private final Button button;
 
         public BuildingsViewHolder(@NonNull View itemView) {
             super(itemView);
