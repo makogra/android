@@ -25,6 +25,8 @@
     <string name="expeditionButton">Wyrusz na wyprawę</string>
     <string name="btn_return_from_expedition">Wróć</string>
     <string name="btn_harvest_resources">Zbierz zasoby</string>
+    <string name="btn_build">Zbuduj</string>
+    <string name="btn_build_upgrade">Ulepsz</string>
 
     <string-array name="land_types">
         <item>Las</item>
