@@ -46,6 +46,12 @@
         <item>Adventures\' Guild</item>
     </string-array>
 
+    <string-array name="buildings_descriptions">
+        <item>You can buy and sell staff</item>
+        <item>Gives Fatih</item>
+        <item>Adds Quests</item>
+    </string-array>
+
     <!-- placeholders -->
     <string name="placeholder_res_type" translatable="false">Resource type</string>
     <string name="placeholder_res_amount" translatable="false">Resource amount</string>

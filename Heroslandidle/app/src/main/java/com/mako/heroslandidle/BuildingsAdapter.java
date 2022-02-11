@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +16,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     private Context context;
     private Resources res;
     private Player player;
-    private String[] buildingsTypes;
+    private String[] buildingsTypes,
+                    buildingsDescriptions;
 
     public BuildingsAdapter(Context context, Resources res, Player player) {
         this.context = context;
@@ -32,6 +34,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
     private void initialize(){
         buildingsTypes = res.getStringArray(R.array.buildings_types);
+        buildingsDescriptions = res.getStringArray(R.array.buildings_descriptions);
     }
 
     @NonNull
@@ -45,7 +48,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
     @Override
     public void onBindViewHolder(@NonNull BuildingsViewHolder holder, int position) {
-        holder.number.setText(buildingsTypes[position]);
+        holder.type.setText(buildingsTypes[position]);
+        holder.description.setText(buildingsDescriptions[position]);
     }
 
     @Override
@@ -55,11 +59,15 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
     public class BuildingsViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView number;
+        private TextView type,
+                        description;
+        private Button button;
 
         public BuildingsViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.number = itemView.findViewById(R.id.buildings_row_type_txt);
+            this.type = itemView.findViewById(R.id.buildings_row_type_txt);
+            this.description = itemView.findViewById(R.id.buildings_row_description_txt);
+            this.button = itemView.findViewById(R.id.buildings_row_build_btn);
         }
     }
 }
