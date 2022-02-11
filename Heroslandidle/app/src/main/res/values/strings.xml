@@ -30,6 +30,7 @@
     <string name="btn_harvest_resources">Harvest resources</string>
     <string name="btn_build">Build</string>
     <string name="btn_build_upgrade">Upgrade</string>
+    <string name="btn_build_max">Max</string>
 
 
     <string-array name="land_types">
@@ -57,7 +58,7 @@
     <string name="placeholder_res_amount" translatable="false">Resource amount</string>
     <string name="placeholder_building_type" translatable="false">Building type</string>
     <string name="placeholder_building_description" translatable="false">Building description</string>
-    <string name="placeholder_building_lvl" translatable="false">Building lvl</string>
+    <string name="placeholder_building_lvl" translatable="false">0</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_exploration" translatable="false">ExplorationActivity</string>
     

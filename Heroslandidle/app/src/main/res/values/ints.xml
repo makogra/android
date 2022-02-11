@@ -36,4 +36,10 @@
         <item name="building">2</item>
         <item name="upgrades">3</item>
     </integer-array>
+
+    <integer-array name="buildings_max_lvls">
+        <item>2</item>
+        <item>5</item>
+        <item>3</item>
+    </integer-array>
 </resources>

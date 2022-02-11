@@ -24,6 +24,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/placeholder_building_type"
+                android:textAllCaps="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +36,15 @@
                 android:text="@string/placeholder_building_description"
                 app:layout_constraintStart_toStartOf="@+id/buildings_row_type_txt"
                 app:layout_constraintTop_toBottomOf="@+id/buildings_row_type_txt" />
+
+            <TextView
+                android:id="@+id/buildings_row_lvl_txt_numeric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/placeholder_building_lvl"
+                app:layout_constraintBottom_toBottomOf="@+id/buildings_row_type_txt"
+                app:layout_constraintStart_toEndOf="@+id/buildings_row_type_txt" />
 
             <Button
                 android:id="@+id/buildings_row_build_btn"
