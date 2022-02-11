@@ -15,16 +15,23 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     private Context context;
     private Resources res;
     private Player player;
+    private String[] buildingsTypes;
 
     public BuildingsAdapter(Context context, Resources res, Player player) {
         this.context = context;
         this.res = res;
         this.player = player;
+        initialize();
     }
 
     public BuildingsAdapter(Context context, Resources res) {
         this.context = context;
         this.res = res;
+        initialize();
+    }
+
+    private void initialize(){
+        buildingsTypes = res.getStringArray(R.array.buildings_types);
     }
 
     @NonNull
@@ -38,12 +45,12 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
     @Override
     public void onBindViewHolder(@NonNull BuildingsViewHolder holder, int position) {
-        holder.number.setText(String.valueOf(position));
+        holder.number.setText(buildingsTypes[position]);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return buildingsTypes.length;
     }
 
     public class BuildingsViewHolder extends RecyclerView.ViewHolder {
@@ -52,7 +59,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
         public BuildingsViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.number = itemView.findViewById(R.id.buildings_row_number_txt);
+            this.number = itemView.findViewById(R.id.buildings_row_type_txt);
         }
     }
 }
