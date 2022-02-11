@@ -2,13 +2,16 @@ package com.mako.heroslandidle;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,6 +24,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     private String[] buildingsTypes,
             buildingsDescriptions;
     private int[] buildingsMaxLvls;
+    private View parent;
 
     public BuildingsAdapter(Context context, Resources res, Player player) {
         this.context = context;
@@ -46,7 +50,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     public BuildingsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(res.getLayout(R.layout.fragment_buildings_row), parent, false);
-
+        this.parent = parent;
         return new BuildingsViewHolder(view);
     }
 
@@ -60,6 +64,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             setMaxAndDisable(holder.button);
         } else {
             holder.button.setOnClickListener(view -> {
+                popup();
                 currentBuildingLvl.getAndIncrement();
                 TextView tv_lvl = holder.lvl;
                 tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
@@ -68,6 +73,34 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
                 }
             });
         }
+    }
+
+    private void popup() {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = layoutInflater.inflate(R.layout.popup, null);
+
+        Button closePopupBtn = customView.findViewById(R.id.popup_cancel_btn);
+        Button acceptPopupBtn = customView.findViewById(R.id.popup_accept_btn);
+
+        PopupWindow popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+
+        closePopupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+        acceptPopupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Accepted");
+                popupWindow.dismiss();
+            }
+        });
+
     }
 
     @Override

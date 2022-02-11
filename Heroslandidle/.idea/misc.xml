@@ -10,10 +10,12 @@
         <entry key="app/src/main/res/layout/activity_exploration.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_fullscreen.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_buildings.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/layout/fragment_buildings_row.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/layout/fragment_equipment.xml" value="0.3317669172932331" />
         <entry key="app/src/main/res/layout/fragment_equipment_row.xml" value="0.11866501854140915" />
         <entry key="app/src/main/res/layout/fragment_town.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_upgrades.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/popup.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.192" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.192" />
       </map>
