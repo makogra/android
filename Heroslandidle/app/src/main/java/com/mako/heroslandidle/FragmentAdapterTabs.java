@@ -48,7 +48,7 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
             case 1:
                 return new EquipmentFragment(player);
             case 2:
-                return new BuildingsFragment();
+                return new BuildingsFragment(player);
             case 3:
                 return new UpgradesFragment();
             default:

@@ -8,10 +8,12 @@ public class Player  implements Serializable {
 
     private int[] equipment;
     private int money = 0;
+    private final int[] buildingsLvl;
 
 
     Player(Resources resources){
         equipment = new int[resources.getStringArray(R.array.resources_arr).length];
+        buildingsLvl = new int[resources.getStringArray(R.array.buildings_types).length];
     }
 
     public int[] getEquipment() {
@@ -65,5 +67,11 @@ public class Player  implements Serializable {
 
     private boolean InvalidIndex(int index){
         return index < 0 || index >= equipment.length;
+    }
+
+    public int getBuildingLvl(int index) {
+        if(index < 0 || index >= buildingsLvl.length)
+            throw new IndexOutOfBoundsException();
+        return buildingsLvl[index];
     }
 }

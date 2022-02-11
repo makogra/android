@@ -28,6 +28,9 @@
     <string name="expeditionButton">Go on expedition</string>
     <string name="btn_return_from_expedition">Come back</string>
     <string name="btn_harvest_resources">Harvest resources</string>
+    <string name="btn_build">Build</string>
+    <string name="btn_build_upgrade">Upgrade</string>
+    <string name="btn_build_max" translatable="false">Max</string>
 
     <string-array name="land_types">
         <item>Forest</item>
@@ -37,9 +40,18 @@
         <item>Undergrounds</item>
     </string-array>
 
+    <string-array name="buildings_types">
+        <item>Marketplace</item>
+        <item>Cathedral</item>
+        <item>Adventurers' Guild</item>
+    </string-array>
+
     <!-- placeholders -->
     <string name="placeholder_res_type" translatable="false">Resource type</string>
     <string name="placeholder_res_amount" translatable="false">Resource amount</string>
+    <string name="placeholder_buildings_type" translatable="false">Building type</string>
+    <string name="placeholder_buildings_description" translatable="false">Building description</string>
+    <string name="placeholder_buildings_lvl" translatable="false">Oszaleje</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="title_activity_exploration" translatable="false">ExplorationActivity</string>
     

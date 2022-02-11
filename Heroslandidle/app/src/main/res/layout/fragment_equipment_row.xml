@@ -17,15 +17,16 @@
             android:layout_height="match_parent"
             android:minHeight="30dp">
 
-            <ImageView
-                android:id="@+id/equipment_row_icon_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_wood"
-                android:contentDescription="Resources icon" />
+                        <ImageView
+                            android:id="@+id/equipment_row_icon_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_log"
+                            android:contentDescription="Resources icon"/>
+
 
             <TextView
                 android:id="@+id/equipment_row_type_txt"

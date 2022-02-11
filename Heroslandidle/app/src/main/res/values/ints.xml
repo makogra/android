@@ -30,10 +30,10 @@
         <item>1</item>
     </integer-array>
 
-    <integer-array name="tabs_ids">
-        <item name="town">0</item>
-        <item name="equipment">1</item>
-        <item name="building">2</item>
-        <item name="upgrades">3</item>
+    <integer-array name="max_buildings_lvl" >
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
     </integer-array>
+
 </resources>

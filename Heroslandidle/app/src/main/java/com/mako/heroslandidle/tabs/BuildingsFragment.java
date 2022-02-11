@@ -3,11 +3,15 @@ package com.mako.heroslandidle.tabs;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mako.heroslandidle.BuildingsAdapter;
+import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 
 /**
@@ -25,9 +29,14 @@ public class BuildingsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Player player;
 
     public BuildingsFragment() {
         // Required empty public constructor
+    }
+
+    public BuildingsFragment(Player player){
+        this.player = player;
     }
 
     /**
@@ -61,6 +70,11 @@ public class BuildingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_buildings, container, false);
+        View view = inflater.inflate(R.layout.fragment_buildings, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_buildings);
+        BuildingsAdapter adapter = new BuildingsAdapter(getContext(), getResources(), player);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        return view;
     }
 }

@@ -37,7 +37,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.Equi
     @Override
     public void onBindViewHolder(@NonNull EquipmentViewHolder holder, int position) {
         holder.resourceType.setText(resources[position]);
-        holder.resourceAmount.setText(Integer.toString(player.getResource(position)));
+        holder.resourceAmount.setText(String.valueOf(player.getResource(position)));
     }
 
     @Override

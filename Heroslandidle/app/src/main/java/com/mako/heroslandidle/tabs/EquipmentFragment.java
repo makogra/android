@@ -28,7 +28,6 @@ import java.util.Objects;
 public class EquipmentFragment extends Fragment {
 
     private Player player;
-    private RecyclerView recyclerView;
     private EquipmentAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -85,7 +84,7 @@ public class EquipmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
-        recyclerView = view.findViewById(R.id.recycler_view_equipment);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_equipment);
         adapter = new EquipmentAdapter(getContext(), getResources(), player);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

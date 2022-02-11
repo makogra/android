@@ -1,7 +1,5 @@
 <resources>
 
-
-
     <style name="Widget.Theme.HerosLandIdle.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
@@ -11,11 +9,4 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="icons_resources">
-        <item name="android:height">30dp</item>
-        <item name="android:width">30dp</item>
-        <item name="android:viewportHeight">100</item>
-        <item name="android:viewportWidth">100</item>
-        <item name="android:layout_margin">5dp</item>
-    </style>
 </resources>

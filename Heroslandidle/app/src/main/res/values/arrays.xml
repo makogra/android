@@ -21,4 +21,10 @@
         <item>@string/fish</item>
         <item>@string/seaweed</item>
     </string-array>
+
+    <string-array name="buildings_descriptions" translatable="false">
+        <item>You can buy or sell staff</item>
+        <item>Thb I don't knot either</item>
+        <item>Some quests i think</item>
+    </string-array>
 </resources>
