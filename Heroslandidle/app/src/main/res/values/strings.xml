@@ -42,12 +42,14 @@
     </string-array>
 
     <string-array name="buildings_types">
+        <item>Town</item>
         <item>Marketplace</item>
         <item>Cathedral</item>
         <item>Adventures\' Guild</item>
     </string-array>
 
     <string-array name="buildings_descriptions">
+        <item>Town you know</item>
         <item>You can buy and sell staff</item>
         <item>Gives Fatih</item>
         <item>Adds Quests</item>

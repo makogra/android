@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="buildings_costs_type">
+        <item>@array/buildings_costs_town</item>
         <item>@array/buildings_costs_marketplace</item>
+        <item>@array/buildings_costs_cathedral</item>
+        <item>@array/buildings_costs_adventures_guild</item>
+    </array>
+
+    <array name="buildings_costs_town">
+        <item>@array/buildings_costs_town_lvl_0</item>
+        <item>@array/buildings_costs_town_lvl_1</item>
     </array>
     
     <array name="buildings_costs_marketplace">
-        <item>@array/buildings_costs_marketplace_lvl_0_resources</item>
+        <item>@array/buildings_costs_marketplace_lvl_0</item>
+        <item>@array/buildings_costs_marketplace_lvl_1</item>
+    </array>
+
+    <array name="buildings_costs_cathedral">
+        <item>@array/buildings_costs_cathedral_lvl_0</item>
+    </array>
+
+    <array name="buildings_costs_adventures_guild">
+        <item>@array/buildings_costs_adventures_guild_lvl_0</item>
     </array>
 
     <!-- template
 
-     <integer-array name="buildings_costs_[TYPE]_lvl_[LVL]_resources">
+     <integer-array name="buildings_costs_[TYPE]_lvl_[LVL]">
+        <item>1</item> // town lvl
+        <item>0</item> //money
         <item>0</item> //wood
         <item>0</item>  //berries
         <item>0</item>  //animals
@@ -27,13 +46,100 @@
 
      -->
 
-    <integer-array name="buildings_costs_marketplace_lvl_0_resources">
-        <item comment="wood">50</item> //wood
+    <integer-array name="buildings_costs_town_lvl_0">
+        <item>0</item> // town lvl
+        <item>0</item> //money
+        <item>0</item> //wood
         <item>0</item>  //berries
         <item>0</item>  //animals
         <item>0</item>  //stone
         <item>0</item>  //gold
         <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+    <integer-array name="buildings_costs_town_lvl_1">
+        <item>1</item> // town lvl
+        <item>0</item> //money
+        <item>100</item> //wood
+        <item>30</item>  //berries
+        <item>30</item>  //animals
+        <item>40</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>5</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+    <integer-array name="buildings_costs_marketplace_lvl_0">
+        <item>1</item> //town lvl
+        <item>0</item> //money
+        <item>50</item> //wood
+        <item>0</item>  //berries
+        <item>0</item>  //animals
+        <item>15</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+    <integer-array name="buildings_costs_marketplace_lvl_1">
+        <item>1</item> //town lvl
+        <item>20</item> //money
+        <item>50</item> //wood
+        <item>0</item>  //berries
+        <item>10</item>  //animals
+        <item>30</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+    <integer-array name="buildings_costs_cathedral_lvl_0">
+        <item>2</item> //town lvl
+        <item>1000</item> //money
+        <item>250</item> //wood
+        <item>0</item>  //berries
+        <item>10</item>  //animals
+        <item>500</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+    <integer-array name="buildings_costs_adventures_guild_lvl_0">
+        <item>3</item> //town lvl
+        <item>1000</item> //money
+        <item>500</item> //wood
+        <item>0</item>  //berries
+        <item>0</item>  //animals
+        <item>50</item>  //stone
+        <item>0</item>  //gold
+        <item>100</item>  //iron
         <item>0</item>  //coal
         <item>0</item>  //copper
         <item>0</item>  //clay

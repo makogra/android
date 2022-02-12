@@ -38,12 +38,14 @@
     </string-array>
 
     <string-array name="buildings_types">
+        <item>Miasto</item>
         <item>Targowisko</item>
         <item>Katedra</item>
         <item>Gildia Poszukiwaczy Przygód</item>
     </string-array>
 
     <string-array name="buildings_descriptions">
+        <item>Miasto jak miasto</item>
         <item>Możesz kupować i sprzedawać rzeczcy</item>
         <item>Daje Punkty Wiary</item>
         <item>Dodaje Questy</item>

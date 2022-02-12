@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mako.heroslandidle.BuildingsAdapter;
+import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 
 /**
@@ -29,10 +30,15 @@ public class BuildingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Player player;
 
 
     public BuildingsFragment() {
         // Required empty public constructor
+    }
+
+    public BuildingsFragment(Player player){
+        this.player = player;
     }
 
     /**
@@ -68,7 +74,7 @@ public class BuildingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_buildings, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.buildings_recycler_view);
-        BuildingsAdapter adapter = new BuildingsAdapter(getContext(), getResources());
+        BuildingsAdapter adapter = new BuildingsAdapter(getContext(), getResources(), player);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

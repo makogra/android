@@ -82,8 +82,11 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
             setMaxAndDisable(holder.button);
         } else {
+
+            boolean canBuild = canBuild(position, currentBuildingLvl.get());
+
             holder.button.setOnClickListener(view -> {
-                popup(holder, currentBuildingLvl);
+                popup(holder, currentBuildingLvl, canBuild, position);
 
                 if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
                     setMaxAndDisable(holder.button);
@@ -92,14 +95,21 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         }
     }
 
-    private void build(@NonNull BuildingsViewHolder holder, AtomicInteger currentBuildingLvl) {
-        currentBuildingLvl.getAndIncrement();
+    private void build(@NonNull BuildingsViewHolder holder, AtomicInteger currentBuildingLvl, int position) {
+        int[] costs = prices[position][currentBuildingLvl.get()];
+
+        player.removeMoney(costs[1]);
+
+        for (int i = 2; i < costs.length; i++) {
+            player.removeResources(i-2, costs[i]);
+        }
+
+        currentBuildingLvl.incrementAndGet();
         TextView tv_lvl = holder.lvl;
         tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
-
     }
 
-    private void popup(BuildingsViewHolder holder, AtomicInteger currentBuildingLvl) {
+    private void popup(BuildingsViewHolder holder, AtomicInteger currentBuildingLvl, boolean canBuild, int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = layoutInflater.inflate(R.layout.popup, null);
 
@@ -108,17 +118,46 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
         PopupWindow popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(holder.itemView, Gravity.CENTER, 0, 0);
 
         closePopupBtn.setOnClickListener(view -> {
             popupWindow.dismiss();
         });
 
-        acceptPopupBtn.setOnClickListener(view -> {
-            build(holder, currentBuildingLvl);
-            System.out.println("build succed");
-            popupWindow.dismiss();
-        });
+        if(canBuild) {
+            if(!acceptPopupBtn.isEnabled())
+                acceptPopupBtn.setEnabled(true);
+
+            acceptPopupBtn.setOnClickListener(view -> {
+                displayPlayerEq();
+                build(holder, currentBuildingLvl, position);
+                displayPlayerEq();
+                System.out.println("build succed");
+                popupWindow.dismiss();
+            });
+        } else {
+            acceptPopupBtn.setEnabled(false);
+        }
+    }
+
+    private void displayPlayerEq(){
+        System.out.println("player.getMoney() = " + player.getMoney());
+        System.out.println("player equipment = " + Arrays.toString(player.getEquipment()));
+    }
+
+    private boolean canBuild(int buildingTypeIndex, int buildingLvl){
+        int[] costs = prices[buildingTypeIndex][buildingLvl];
+        boolean canBuild = true;
+
+        if(costs[0] > player.getBuildingLvl(0))
+            canBuild = false;
+        if(costs[1] > player.getMoney())
+            canBuild = false;
+        for (int i = 2; i < costs.length; i++) {
+            if (player.getResource(i) < costs[i])
+                canBuild = false;
+        }
+        return canBuild;
     }
 
     @Override
@@ -127,10 +166,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     }
 
     private boolean isMaxBuildingLvl(int position, Button button, int lvl) {
-        int maxBuildingLvl = buildingsMaxLvls[position];
-
-
-        return (lvl == maxBuildingLvl && button.isEnabled());
+        return (lvl == buildingsMaxLvls[position] && button.isEnabled());
     }
 
     private void setMaxAndDisable(Button button) {
