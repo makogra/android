@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="buildings_costs_type">
+        <item>@array/buildings_costs_marketplace</item>
+    </array>
+    
+    <array name="buildings_costs_marketplace">
+        <item>@array/buildings_costs_marketplace_lvl_0_resources</item>
+    </array>
+
+    <!-- template
+
+     <integer-array name="buildings_costs_[TYPE]_lvl_[LVL]_resources">
+        <item>0</item> //wood
+        <item>0</item>  //berries
+        <item>0</item>  //animals
+        <item>0</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+     -->
+
+    <integer-array name="buildings_costs_marketplace_lvl_0_resources">
+        <item comment="wood">50</item> //wood
+        <item>0</item>  //berries
+        <item>0</item>  //animals
+        <item>0</item>  //stone
+        <item>0</item>  //gold
+        <item>0</item>  //iron
+        <item>0</item>  //coal
+        <item>0</item>  //copper
+        <item>0</item>  //clay
+        <item>0</item>  //herb
+        <item>0</item>  //fish
+        <item>0</item>  //seaweed
+    </integer-array>
+
+</resources>

@@ -2,6 +2,7 @@ package com.mako.heroslandidle;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.BuildingsViewHolder> {
@@ -24,6 +27,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     private String[] buildingsTypes,
             buildingsDescriptions;
     private int[] buildingsMaxLvls;
+    private int[][][] prices; //Building type, lvl, resources - all
     private View parent;
 
     public BuildingsAdapter(Context context, Resources res, Player player) {
@@ -43,6 +47,21 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         buildingsTypes = res.getStringArray(R.array.buildings_types);
         buildingsDescriptions = res.getStringArray(R.array.buildings_descriptions);
         buildingsMaxLvls = res.getIntArray(R.array.buildings_max_lvls);
+        TypedArray typesArray = res.obtainTypedArray(R.array.buildings_costs_type);
+        TypedArray lvlArray;
+        int[] resourcesCosts;
+        prices = new int[typesArray.length()][][];
+        for (int i = 0; i < typesArray.length(); i++) {
+            lvlArray = res.obtainTypedArray(typesArray.getResourceId(i,0));
+            prices[i] = new int[lvlArray.length()][];
+            for (int j = 0; j < lvlArray.length(); j++) {
+                resourcesCosts = res.getIntArray(lvlArray.getResourceId(j, 0));
+                prices[i][j] = resourcesCosts;
+            }
+            lvlArray.recycle();
+        }
+        typesArray.recycle();
+        System.out.println(Arrays.deepToString(prices));
     }
 
     @NonNull
@@ -64,10 +83,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             setMaxAndDisable(holder.button);
         } else {
             holder.button.setOnClickListener(view -> {
-                popup();
-                currentBuildingLvl.getAndIncrement();
-                TextView tv_lvl = holder.lvl;
-                tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
+                popup(holder, currentBuildingLvl);
+
                 if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
                     setMaxAndDisable(holder.button);
                 }
@@ -75,7 +92,14 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         }
     }
 
-    private void popup() {
+    private void build(@NonNull BuildingsViewHolder holder, AtomicInteger currentBuildingLvl) {
+        currentBuildingLvl.getAndIncrement();
+        TextView tv_lvl = holder.lvl;
+        tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
+
+    }
+
+    private void popup(BuildingsViewHolder holder, AtomicInteger currentBuildingLvl) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View customView = layoutInflater.inflate(R.layout.popup, null);
 
@@ -86,21 +110,15 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
         popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
 
-        closePopupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popupWindow.dismiss();
-            }
+        closePopupBtn.setOnClickListener(view -> {
+            popupWindow.dismiss();
         });
 
-        acceptPopupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("Accepted");
-                popupWindow.dismiss();
-            }
+        acceptPopupBtn.setOnClickListener(view -> {
+            build(holder, currentBuildingLvl);
+            System.out.println("build succed");
+            popupWindow.dismiss();
         });
-
     }
 
     @Override
