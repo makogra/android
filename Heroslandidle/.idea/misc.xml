@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.36" />
         <entry key="app/src/main/res/drawable/ic_wood.xml" value="0.3005" />
         <entry key="app/src/main/res/drawable/wood.xml" value="0.3005" />
         <entry key="app/src/main/res/layout/activity_exploration.xml" value="0.33" />
@@ -16,6 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_town.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_upgrades.xml" value="0.2" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/menu/navigator_menu.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.192" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.192" />
       </map>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_menu_account"
+        android:title="My account"/>
+
+    <item
+        android:id="@+id/nav_menu_save"
+        android:title="Save"/>
+    <item
+        android:id="@+id/nav_menu_exit"
+        android:title="Exit"/>
+</menu>

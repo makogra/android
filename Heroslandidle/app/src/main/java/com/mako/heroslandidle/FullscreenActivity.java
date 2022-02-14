@@ -4,17 +4,23 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -82,6 +88,31 @@ public class FullscreenActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+
+        // Drawer layout
+        DrawerLayout drawerLayout = findViewById(R.id.fullscreen_drawer_layout);
+        ImageButton settingsButton = findViewById(R.id.fullscreen_nav_menu_btn);
+        settingsButton.setOnClickListener(view -> {
+            drawerLayout.openDrawer(Gravity.RIGHT);
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        System.out.println("item selected: " + item + " id = " + id);
+        if(id == R.id.nav_menu_account) {
+            //TODO account method
+            System.out.println("account");
+        } else if (id == R.id.nav_menu_save){
+            System.out.println("save");
+        } else if (id == R.id.nav_menu_exit){
+            System.out.println("exit");
+            finishAndRemoveTask();
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

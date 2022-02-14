@@ -55,6 +55,10 @@
         <item>Adds Quests</item>
     </string-array>
 
+    <!-- menu -->
+    <string name="nav_open" translatable="false">Open</string>
+    <string name="nav_close" translatable="false">Close</string>
+
     <!-- placeholders -->
     <string name="placeholder_res_type" translatable="false">Resource type</string>
     <string name="placeholder_res_amount" translatable="false">Resource amount</string>
