@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG)
                         .show();
-            )
         }
     }
 }
