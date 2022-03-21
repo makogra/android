@@ -31,7 +31,7 @@ import java.util.Arrays;
 
 public class FullscreenActivity extends AppCompatActivity {
 
-    ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+    /*ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
             if (result != null && result.getResultCode() == RESULT_OK){
@@ -41,7 +41,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
             }
         }
-    });
+    });*/
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
@@ -61,7 +61,9 @@ public class FullscreenActivity extends AppCompatActivity {
 
         Resources resources = getResources();
 
-        player1 = new Player(resources);
+        player1 = Player.getInstance();
+        player1.setResources(resources);
+        player1.initialize();
 
         createTabs();
         addTabs(resources);
@@ -118,7 +120,7 @@ public class FullscreenActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void createTabs() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentAdapterTabs fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle(), getResources(), player1);
+        FragmentAdapterTabs fragmentAdapterTabs = new FragmentAdapterTabs(fragmentManager, getLifecycle(), getResources());
 
         viewPager2.setAdapter(fragmentAdapterTabs);
     }
@@ -152,7 +154,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
     public void goOnExpedition(View v){
         Intent intent = new Intent(FullscreenActivity.this,ExplorationActivity.class);
-        startForResult.launch(intent);
+        //startForResult.launch(intent);
+        startActivity(intent);
     }
 
     @Override

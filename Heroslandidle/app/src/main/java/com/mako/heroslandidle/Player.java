@@ -6,12 +6,39 @@ import java.io.Serializable;
 
 public class Player  implements Serializable {
 
+    private static volatile Player INSTANCE;
     private int[] equipment,
                     buildings;
     private int money = 0;
+    private Resources resources;
 
+    private Player(){ }
 
-    Player(Resources resources){
+    static Player getInstance(){
+        if(INSTANCE == null){
+            synchronized (Player.class){
+                if (INSTANCE == null){
+                    INSTANCE = new Player();
+                    try{
+                        INSTANCE.initialize();
+                    }catch (NullPointerException e){
+                        System.out.println(Player.class + " " +e);
+                    }
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+    void setResources(Resources resources){
+        this.resources = resources;
+    }
+
+    void initialize(){
+        if(INSTANCE == null)
+            throw new NullPointerException("INSTANCE in null");
+        if(resources == null)
+            throw new NullPointerException("resources are null");
         equipment = new int[resources.getStringArray(R.array.resources_arr).length];
         buildings = new int[resources.getStringArray(R.array.buildings_types).length];
         buildings[0] = 1;

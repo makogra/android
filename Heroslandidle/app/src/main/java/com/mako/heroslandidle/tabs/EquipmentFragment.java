@@ -1,24 +1,17 @@
 package com.mako.heroslandidle.tabs;
 
 import android.annotation.SuppressLint;
-import android.media.MediaDrm;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.mako.heroslandidle.EquipmentAdapter;
-import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
-
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +20,6 @@ import java.util.Objects;
  */
 public class EquipmentFragment extends Fragment {
 
-    private Player player;
     private RecyclerView recyclerView;
     private EquipmentAdapter adapter;
 
@@ -41,10 +33,6 @@ public class EquipmentFragment extends Fragment {
     private String mParam2;
 
     public EquipmentFragment() {
-    }
-
-    public EquipmentFragment(Player player){
-        this.player = player;
     }
 
     /**
@@ -86,7 +74,7 @@ public class EquipmentFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_equipment, container, false);
         recyclerView = view.findViewById(R.id.recycler_view_equipment);
-        adapter = new EquipmentAdapter(getContext(), getResources(), player);
+        adapter = new EquipmentAdapter(getContext(), getResources());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;

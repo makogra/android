@@ -14,14 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.EquipmentViewHolder> {
 
     private final Context context;
-    private final Player player;
+    private final Player player = Player.getInstance();
     private final String[] resources;
     private int money;
 
 
-    public EquipmentAdapter(Context context, Resources res, Player player) {
+    public EquipmentAdapter(Context context, Resources res) {
         this.context = context;
-        this.player = player;
         this.resources = res.getStringArray(R.array.resources_arr);
     }
 

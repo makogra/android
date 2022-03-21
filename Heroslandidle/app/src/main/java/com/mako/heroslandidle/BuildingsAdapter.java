@@ -12,30 +12,21 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.BuildingsViewHolder> {
 
     private final Context context;
     private final Resources res;
-    private Player player;
+    private final Player player = Player.getInstance();
     private String[] buildingsTypes,
             buildingsDescriptions;
     private int[] buildingsMaxLvls;
     private int[][][] prices; //Building type, lvl, resources - all
-    private View parent;
 
-    public BuildingsAdapter(Context context, Resources res, Player player) {
-        this.context = context;
-        this.res = res;
-        this.player = player;
-        initialize();
-    }
 
     public BuildingsAdapter(Context context, Resources res) {
         this.context = context;
@@ -69,7 +60,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     public BuildingsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(res.getLayout(R.layout.fragment_buildings_row), parent, false);
-        this.parent = parent;
         return new BuildingsViewHolder(view);
     }
 
@@ -132,7 +122,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
                 displayPlayerEq();
                 build(holder, currentBuildingLvl, position);
                 displayPlayerEq();
-                System.out.println("build succed");
+                System.out.println("build succeed");
                 popupWindow.dismiss();
             });
         } else {

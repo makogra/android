@@ -20,7 +20,7 @@ public class ExplorationActivity extends AppCompatActivity {
 
     public static final String PLAYER_NAME = "playerFromExpedition";
 
-    private Player player;
+    private final Player player = Player.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,6 @@ public class ExplorationActivity extends AppCompatActivity {
         com.mako.heroslandidle.databinding.ActivityExplorationBinding binding = ActivityExplorationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        player = new Player(getResources());
         Land land1 = new Land(getResources());
         displayLand(binding.getRoot(), land1);
 
@@ -57,20 +56,17 @@ public class ExplorationActivity extends AppCompatActivity {
     }
 
     public void goBack(View v){
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
         if(player == null)
             setResult(RESULT_CANCELED);
         else {
             intent.putExtra(PLAYER_NAME, player);
             setResult(RESULT_OK, intent);
-        }
-        finishAndRemoveTask();
+        }*/
+        finish();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
