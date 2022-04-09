@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleRoomWordsv2">
         <activity
+            android:name=".NewWordActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

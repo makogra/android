@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ public class EquipmentFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private EquipmentAdapter adapter;
+    private EquipmentViewModel mEquipmentViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -77,6 +79,10 @@ public class EquipmentFragment extends Fragment {
         adapter = new EquipmentAdapter(getContext(), getResources());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mEquipmentViewModel = new ViewModelProvider(this).get(EquipmentViewModel.class);
+        mEquipmentViewModel.getEquipment().observe(this, equipments -> {
+
+        });
         return view;
     }
 }

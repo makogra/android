@@ -2,14 +2,28 @@ package com.mako.heroslandidle;
 
 import android.content.res.Resources;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity(tableName = "player_table")
 public class Player  implements Serializable {
 
+    @Ignore
     private static volatile Player INSTANCE;
+    @Ignore
+    private static String sCurrentPlayerId = "0";
+
+    @NonNull
+    @PrimaryKey
+    private String id;
     private int[] equipment,
                     buildings;
-    private int money = 0;
+    private int money;
+    @Ignore
     private Resources resources;
 
     private Player(){ }
@@ -112,5 +126,13 @@ public class Player  implements Serializable {
             return false;
         money -= cost;
         return true;
+    }
+
+    public static String getCurrentPlayerId() {
+        return sCurrentPlayerId;
+    }
+
+    public void setCurrentPlayerId(String id){
+        sCurrentPlayerId = id;
     }
 }
