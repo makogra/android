@@ -5,13 +5,16 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.mako.heroslandidle.Player;
+import com.mako.heroslandidle.database.typeconverters.intArrayConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Player.class}, version = 1)
+@TypeConverters({intArrayConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
@@ -24,7 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null)
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "player_databse")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "player_database")
                             .build();
                 }
             }
