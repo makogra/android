@@ -70,4 +70,11 @@
     
     <!--    credits    -->
     <string name="credit_gui_buttons" translatable="false"><a href="https://www.freepik.com/vectors/background">Background vector created by upklyak - www.freepik.com</a></string>
+    <string name="resources_type_2">Resources Type 2</string>
+    <string name="resources_type_1">Resources Type 1</string>
+    <string name="biom" translatable="false">biom</string>
+    <string name="res_type_1" translatable="false">res type 1</string>
+    <string name="res_amount_1" translatable="false">res amount 1</string>
+    <string name="res_type_2" translatable="false">res type 2</string>
+    <string name="res_amount_2" translatable="false">res amount 2</string>
 </resources>

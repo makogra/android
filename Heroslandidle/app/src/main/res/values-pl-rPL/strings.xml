@@ -28,6 +28,8 @@
     <string name="btn_build">Zbuduj</string>
     <string name="btn_build_upgrade">Ulepsz</string>
     <string name="btn_build_max">Max</string>
+    <string name="resources_type_2">Resources Type 2</string>
+    <string name="resources_type_1">Resources Type 1</string>
 
     <string-array name="land_types">
         <item>Las</item>
