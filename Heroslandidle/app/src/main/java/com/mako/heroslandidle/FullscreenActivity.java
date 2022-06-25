@@ -22,10 +22,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mako.heroslandidle.databinding.ActivityFullscreenBinding;
+import com.mako.heroslandidle.tabs.EquipmentViewModel;
 
 import java.util.Arrays;
 
@@ -46,6 +48,7 @@ public class FullscreenActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
     private Player player1;
+    private EquipmentViewModel equipmentViewModel;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -55,6 +58,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
         com.mako.heroslandidle.databinding.ActivityFullscreenBinding binding = ActivityFullscreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        equipmentViewModel = new ViewModelProvider(this).get(EquipmentViewModel.class);
 
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
@@ -97,6 +102,7 @@ public class FullscreenActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(view -> {
             drawerLayout.openDrawer(Gravity.RIGHT);
         });
+
 
     }
 

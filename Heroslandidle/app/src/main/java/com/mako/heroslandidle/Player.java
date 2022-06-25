@@ -2,17 +2,32 @@ package com.mako.heroslandidle;
 
 import android.content.res.Resources;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity(tableName = "player_table")
 public class Player  implements Serializable {
 
+    @Ignore
     private static volatile Player INSTANCE;
-    private int[] equipment,
-                    buildings;
-    private int money = 0;
+    @Ignore
+    private static String sCurrentPlayerId = "0";
+
+    @NonNull
+    @PrimaryKey
+    private String id;
+
+    private int[] equipment;
+    private int[] buildings;
+    private int money;
+    @Ignore
     private Resources resources;
 
-    private Player(){ }
+    public Player(){ }
 
     static Player getInstance(){
         if(INSTANCE == null){
@@ -32,6 +47,34 @@ public class Player  implements Serializable {
 
     void setResources(Resources resources){
         this.resources = resources;
+    }
+
+    public int[] getBuildings() {
+        return buildings;
+    }
+
+    public Resources getResources() {
+        return resources;
+    }
+
+    public static void setINSTANCE(Player INSTANCE) {
+        Player.INSTANCE = INSTANCE;
+    }
+
+    public static void setsCurrentPlayerId(String sCurrentPlayerId) {
+        Player.sCurrentPlayerId = sCurrentPlayerId;
+    }
+
+    public void setEquipment(int[] equipment) {
+        this.equipment = equipment;
+    }
+
+    public void setBuildings(int[] buildings) {
+        this.buildings = buildings;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     void initialize(){
@@ -112,5 +155,22 @@ public class Player  implements Serializable {
             return false;
         money -= cost;
         return true;
+    }
+
+    public static String getCurrentPlayerId() {
+        return sCurrentPlayerId;
+    }
+
+    public void setCurrentPlayerId(String id){
+        sCurrentPlayerId = id;
+    }
+
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
     }
 }
