@@ -29,7 +29,7 @@ public class Player  implements Serializable {
 
     public Player(){ }
 
-    static Player getInstance(){
+    public static Player getInstance(){
         if(INSTANCE == null){
             synchronized (Player.class){
                 if (INSTANCE == null){
@@ -45,7 +45,7 @@ public class Player  implements Serializable {
         return INSTANCE;
     }
 
-    void setResources(Resources resources){
+    public void setResources(Resources resources){
         this.resources = resources;
     }
 
@@ -77,7 +77,7 @@ public class Player  implements Serializable {
         this.money = money;
     }
 
-    void initialize(){
+    public void initialize(){
         if(INSTANCE == null)
             throw new NullPointerException("INSTANCE in null");
         if(resources == null)
