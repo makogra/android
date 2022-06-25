@@ -11,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mako.heroslandidle.EquipmentAdapter;
-import com.mako.heroslandidle.FullscreenActivity;
+import com.mako.heroslandidle.adapters.EquipmentAdapter;
 import com.mako.heroslandidle.R;
 
 

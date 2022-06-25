@@ -1,4 +1,4 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mako.heroslandidle.Player;
+import com.mako.heroslandidle.R;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -110,9 +113,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
         popupWindow.showAtLocation(holder.itemView, Gravity.CENTER, 0, 0);
 
-        closePopupBtn.setOnClickListener(view -> {
-            popupWindow.dismiss();
-        });
+        closePopupBtn.setOnClickListener(view -> popupWindow.dismiss());
 
         if(canBuild) {
             if(!acceptPopupBtn.isEnabled())

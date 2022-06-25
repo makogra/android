@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="?attr/fullscreenBackgroundColor"
     android:theme="@style/ThemeOverlay.HerosLandIdle.FullscreenContainer"
-    tools:context=".ExplorationActivity">
+    tools:context=".activites.ExplorationActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -23,7 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/imageView5"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/resources_type_2" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -33,7 +34,8 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/resources_type_1" />
 
         <Button
             android:id="@+id/GoBackButton"
@@ -60,7 +62,7 @@
             android:id="@+id/biom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="biom"
+            android:text="@string/biom"
             app:layout_constraintBottom_toTopOf="@+id/res_type1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +72,7 @@
             android:id="@+id/res_type1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="resType1"
+            android:text="@string/res_type_1"
             app:layout_constraintBottom_toTopOf="@+id/imageView5"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +82,7 @@
             android:id="@+id/res_amount1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ResAmount1"
+            android:text="@string/res_amount_1"
             app:layout_constraintEnd_toEndOf="@+id/res_type1"
             app:layout_constraintHorizontal_bias="0.521"
             app:layout_constraintStart_toStartOf="@+id/res_type1"
@@ -100,7 +102,7 @@
             android:id="@+id/res_type2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ResType2"
+            android:text="@string/res_type_2"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -110,7 +112,7 @@
             android:id="@+id/res_amount2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ResAmount2"
+            android:text="@string/res_amount_2"
             app:layout_constraintEnd_toEndOf="@+id/res_type2"
             app:layout_constraintStart_toStartOf="@+id/res_type2"
             app:layout_constraintTop_toBottomOf="@+id/res_type2" />

@@ -26,7 +26,7 @@ public class EquipmentViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    static EquipmentViewHolder create(ViewGroup parent){
+    public static EquipmentViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_equipment_row, parent, false);
         return new EquipmentViewHolder(view);

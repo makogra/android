@@ -8,7 +8,7 @@
     android:background="?attr/fullscreenBackgroundColor"
     android:theme="@style/ThemeOverlay.HerosLandIdle.FullscreenContainer"
     android:keepScreenOn="true"
-    tools:context=".FullscreenActivity"
+    tools:context=".activites.FullscreenActivity"
     android:id="@+id/fullscreen_drawer_layout">
 
     <RelativeLayout

@@ -1,10 +1,13 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.adapters;
 
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+
+import com.mako.heroslandidle.EquipmentViewHolder;
+import com.mako.heroslandidle.Player;
 
 public class EquipmentListAdapter extends ListAdapter<Integer, EquipmentViewHolder> {
 

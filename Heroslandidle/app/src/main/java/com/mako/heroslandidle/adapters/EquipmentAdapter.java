@@ -1,4 +1,4 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.mako.heroslandidle.Player;
+import com.mako.heroslandidle.R;
 
 public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.EquipmentViewHolder> {
 
@@ -36,7 +39,7 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.Equi
     @Override
     public void onBindViewHolder(@NonNull EquipmentViewHolder holder, int position) {
         holder.resourceType.setText(resources[position]);
-        holder.resourceAmount.setText(Integer.toString(player.getResource(position)));
+        holder.resourceAmount.setText("" + player.getResource(position));
     }
 
     @Override

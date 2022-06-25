@@ -1,4 +1,4 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.adapters;
 
 import android.content.res.Resources;
 import android.os.Build;
@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.tabs.BuildingsFragment;
 import com.mako.heroslandidle.tabs.EquipmentFragment;
 import com.mako.heroslandidle.tabs.TownFragment;
@@ -82,6 +83,6 @@ public class FragmentAdapterTabs extends FragmentStateAdapter {
 
     private void sort(){
         //TODO fix problem with sort
-        availableTabs.sort(Comparator.comparingInt(o -> allTabs.indexOf(o)));
+        availableTabs.sort(Comparator.comparingInt(allTabs::indexOf));
     }
 }

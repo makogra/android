@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerosLandIdle">
         <activity
-            android:name=".ExplorationActivity"
+            android:name=".activites.ExplorationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:label="@string/title_activity_exploration"
             
             android:theme="@style/Theme.HerosLandIdle.Fullscreen" />
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".activites.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:theme="@style/Theme.HerosLandIdle.Fullscreen">

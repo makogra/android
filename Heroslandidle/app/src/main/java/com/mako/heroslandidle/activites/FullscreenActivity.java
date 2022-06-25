@@ -1,4 +1,4 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.activites;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,13 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,10 +21,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mako.heroslandidle.adapters.FragmentAdapterTabs;
+import com.mako.heroslandidle.Player;
+import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.databinding.ActivityFullscreenBinding;
 import com.mako.heroslandidle.tabs.EquipmentViewModel;
-
-import java.util.Arrays;
 
 public class FullscreenActivity extends AppCompatActivity {
 
@@ -99,9 +95,7 @@ public class FullscreenActivity extends AppCompatActivity {
         // Drawer layout
         DrawerLayout drawerLayout = findViewById(R.id.fullscreen_drawer_layout);
         ImageButton settingsButton = findViewById(R.id.fullscreen_nav_menu_btn);
-        settingsButton.setOnClickListener(view -> {
-            drawerLayout.openDrawer(Gravity.RIGHT);
-        });
+        settingsButton.setOnClickListener(view -> drawerLayout.openDrawer(Gravity.RIGHT));
 
 
     }
@@ -159,7 +153,7 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     public void goOnExpedition(View v){
-        Intent intent = new Intent(FullscreenActivity.this,ExplorationActivity.class);
+        Intent intent = new Intent(FullscreenActivity.this, ExplorationActivity.class);
         //startForResult.launch(intent);
         startActivity(intent);
     }

@@ -28,7 +28,7 @@ public class Land {
     }
 
 
-    class ResourcesField{
+    public class ResourcesField{
         
         //Config
         private static final float RES_BOUND = 8.0F;
@@ -59,23 +59,14 @@ public class Land {
 
         ResourcesField(){
             resTypes = res.getStringArray(R.array.resources_arr);
-            System.out.println("resTypes = " + Arrays.toString(resTypes));
             resTypeIndex = generateResTypeIndex();
             resType = resTypes[resTypeIndex];
             resAmount = generateResAmount();
-            
-            //TODO clear sout
-            System.out.println("resType = " + resType);
-            System.out.println("resAmount = " + resAmount);
-            System.out.println("BIOM = " + BIOM);
         }
         
         private int generateResTypeIndex(){
             Random random = new Random();
             float temp = resTypes.length / (float) BIOMS_LENGTH;
-            System.out.println("BIOM_INDEX = " + BIOM_INDEX);
-            System.out.println("resTypes.length = " + resTypes.length);
-            System.out.println("temp = " + temp);
             int result = (int)((temp * random.nextGaussian()) + (temp * (BIOM_INDEX+1))) % resTypes.length;
             result = Math.abs(result);
             System.out.println("result = " + result);
@@ -88,18 +79,14 @@ public class Land {
         }
     }
 
-    Land(Resources res){
+    public Land(Resources res){
         this.res = res;
 
         Random random = new Random();
         String[] bioms = res.getStringArray(R.array.land_types);
-        System.out.println("bioms = " + Arrays.toString(bioms));
-        System.out.println("bioms = " + bioms.length);
         BIOMS_LENGTH = bioms.length;
         BIOM_INDEX = random.nextInt(bioms.length);
         BIOM = bioms[BIOM_INDEX];
-        System.out.println("BIOMS_LENGTH = " + BIOMS_LENGTH);
-        System.out.println("random = " + random.nextInt(BIOMS_LENGTH));
 
         leftResField = new ResourcesField();
         rightResField = new ResourcesField();

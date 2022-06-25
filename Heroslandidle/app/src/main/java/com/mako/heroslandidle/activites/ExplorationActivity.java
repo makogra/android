@@ -1,4 +1,4 @@
-package com.mako.heroslandidle;
+package com.mako.heroslandidle.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.mako.heroslandidle.Land;
+import com.mako.heroslandidle.Player;
+import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.databinding.ActivityExplorationBinding;
 
 import java.util.Arrays;
@@ -39,14 +42,14 @@ public class ExplorationActivity extends AppCompatActivity {
         harvestResLeft.setOnClickListener(view -> {
            harvestResources(land1.getLeftResField());
            TextView resAmount = findViewById(R.id.res_amount1);
-           resAmount.setText(Integer.toString(0));
+           resAmount.setText("0");
         });
 
         Button harvestResRight = findViewById(R.id.btn_harvest_resources_right);
         harvestResRight.setOnClickListener(view -> {
             harvestResources(land1.getRightResField());
             TextView resAmount = findViewById(R.id.res_amount2);
-            resAmount.setText(Integer.toString(0));
+            resAmount.setText("0");
         });
     }
 
