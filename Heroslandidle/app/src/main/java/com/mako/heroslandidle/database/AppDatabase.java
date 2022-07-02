@@ -1,6 +1,7 @@
 package com.mako.heroslandidle.database;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -29,6 +30,15 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "player_database")
                             .build();
+                    /*
+                    TODO move it to activity
+                    if (INSTANCE.playerDao().count() == 0){
+                        Player player = Player.getInstance();
+                        player.setId("New player");
+                        INSTANCE.playerDao().insert(player);
+                    }
+
+                     */
                 }
             }
         return INSTANCE;

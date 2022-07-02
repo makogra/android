@@ -43,9 +43,7 @@ public class EquipmentFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mEquipmentViewModel = new ViewModelProvider(requireActivity()).get(EquipmentViewModel.class);
-        mEquipmentViewModel.getEquipment().observe(getViewLifecycleOwner(), equipments -> {
-
-        });
+        mEquipmentViewModel.getEquipment().observe(getViewLifecycleOwner(), equipments -> adapter.submitEquipment(equipments));
         return view;
     }
 }

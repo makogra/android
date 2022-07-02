@@ -39,8 +39,7 @@
             app:layout_constraintEnd_toEndOf="@+id/LoadButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/LoadButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="goOnExpedition">
+            app:layout_constraintTop_toTopOf="parent">
 
         </Button>
 

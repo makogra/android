@@ -47,6 +47,10 @@ public class EquipmentAdapter extends RecyclerView.Adapter<EquipmentAdapter.Equi
         return resources.length;
     }
 
+    public void submitEquipment(int[] equipments) {
+
+    }
+
     public class EquipmentViewHolder extends RecyclerView.ViewHolder {
 
         TextView resourceType, resourceAmount;

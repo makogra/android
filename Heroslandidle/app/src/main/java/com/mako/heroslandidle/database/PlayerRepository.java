@@ -3,6 +3,7 @@ package com.mako.heroslandidle.database;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.mako.heroslandidle.Player;
 
@@ -19,11 +20,11 @@ public class PlayerRepository {
         mAllPlayersId = mPlayerDao.getAllIds();
     }
 
-    LiveData<List<String>> getAllPlayersId(){
+    public LiveData<List<String>> getAllPlayersId(){
         return mAllPlayersId;
     }
     
-    LiveData<Player> getPlayer(String id){
+    public LiveData<Player> getPlayer(String id){
         return mPlayerDao.getPlayer(id);
     }
 
@@ -31,9 +32,19 @@ public class PlayerRepository {
         return mPlayerDao.getEquipment(id);
     }
 
-    void insert(Player player){
-        AppDatabase.databaseWriteExecutor.execute(() -> {
-            mPlayerDao.insert(player);
-        });
+    public void insert(Player player){
+        AppDatabase.databaseWriteExecutor.execute(() -> mPlayerDao.insert(player));
+    }
+
+    public LiveData<List<String>> getAllIds() {
+        return mPlayerDao.getAllIds();
+    }
+
+    public void deleteById(String playerId) {
+        AppDatabase.databaseWriteExecutor.execute(() -> mPlayerDao.deleteById(playerId));
+    }
+
+    public LiveData<Integer> countPlayers() {
+        return mPlayerDao.countPlayers();
     }
 }

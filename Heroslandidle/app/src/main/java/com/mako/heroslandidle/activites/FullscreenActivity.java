@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.mako.heroslandidle.adapters.FragmentAdapterTabs;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
+import com.mako.heroslandidle.database.PlayerRepository;
 import com.mako.heroslandidle.databinding.ActivityFullscreenBinding;
 import com.mako.heroslandidle.tabs.EquipmentViewModel;
 
@@ -60,14 +62,24 @@ public class FullscreenActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
 
-        Resources resources = getResources();
+        initPlayer();
+        initTabs();
 
-        player1 = Player.getInstance();
-        player1.setResources(resources);
-        player1.initialize();
+        // Drawer layout
+        initDrawerLayout();
 
+    }
+
+    private void initDrawerLayout() {
+        DrawerLayout drawerLayout = findViewById(R.id.fullscreen_drawer_layout);
+        ImageButton settingsButton = findViewById(R.id.fullscreen_nav_menu_btn);
+        settingsButton.setOnClickListener(view -> drawerLayout.openDrawer(Gravity.RIGHT));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initTabs() {
         createTabs();
-        addTabs(resources);
+        addTabs(getResources());
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -91,13 +103,13 @@ public class FullscreenActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
 
-        // Drawer layout
-        DrawerLayout drawerLayout = findViewById(R.id.fullscreen_drawer_layout);
-        ImageButton settingsButton = findViewById(R.id.fullscreen_nav_menu_btn);
-        settingsButton.setOnClickListener(view -> drawerLayout.openDrawer(Gravity.RIGHT));
-
-
+    private void initPlayer() {
+        player1 = Player.getInstance();
+        player1.setId("BadChess");
+        player1.setResources(getResources());
+        player1.initialize();
     }
 
     @Override
@@ -152,15 +164,12 @@ public class FullscreenActivity extends AppCompatActivity {
         finishAndRemoveTask();
     }
 
-    public void goOnExpedition(View v){
-        Intent intent = new Intent(FullscreenActivity.this, ExplorationActivity.class);
-        //startForResult.launch(intent);
-        startActivity(intent);
-    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
     }
+
 
 }

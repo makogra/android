@@ -8,6 +8,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 @Entity(tableName = "player_table")
 public class Player  implements Serializable {
@@ -172,5 +173,15 @@ public class Player  implements Serializable {
 
     public void setId(@NonNull String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id='" + id + '\'' +
+                ", equipment=" + Arrays.toString(equipment) +
+                ", buildings=" + Arrays.toString(buildings) +
+                ", money=" + money +
+                '}';
     }
 }

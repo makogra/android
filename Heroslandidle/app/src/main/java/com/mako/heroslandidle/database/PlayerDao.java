@@ -3,6 +3,7 @@ package com.mako.heroslandidle.database;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.mako.heroslandidle.Player;
@@ -24,6 +25,9 @@ public interface PlayerDao {
     @Query("DELETE FROM player_table WHERE id LIKE :playerId")
     void deleteById(String playerId);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Player player);
+
+    @Query("SELECT count(*) FROM player_table")
+    LiveData<Integer> countPlayers();
 }
