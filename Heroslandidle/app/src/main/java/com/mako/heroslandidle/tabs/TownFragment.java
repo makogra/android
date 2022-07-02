@@ -22,7 +22,6 @@ import java.util.Objects;
 public class TownFragment extends Fragment {
 
     PlayerRepository mPlayerRepository;
-    private boolean firstTime = true;
 
     public TownFragment() {
         // Required empty public constructor
@@ -47,9 +46,7 @@ public class TownFragment extends Fragment {
 
         System.out.println("saving");
         Player p = Player.getInstance();
-        if (!this.firstTime)
-            mPlayerRepository.insert(p);
-        firstTime = false;
+        mPlayerRepository.insert(p);
         System.out.println("p = " + p);
         System.out.println("saved");
         mPlayerRepository.getPlayer(p.getId()).observe(getViewLifecycleOwner(), player -> System.out.println("player = " + player));
