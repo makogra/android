@@ -106,10 +106,18 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void initPlayer() {
-        player1 = Player.getInstance();
-        player1.setId("BadChess");
-        player1.setResources(getResources());
-        player1.initialize();
+        PlayerRepository playerRepository = new PlayerRepository(getApplication());
+        playerRepository.getPlayer("BadChess").observe(this, player -> {
+            if (player != null){
+                Player.setINSTANCE(player);
+            } else {
+                player1 = Player.getInstance();
+                player1.setId("BadChess");
+                player1.setResources(getResources());
+                player1.initialize();
+            }
+        });
+
     }
 
     @Override
