@@ -55,7 +55,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             lvlArray.recycle();
         }
         typesArray.recycle();
-        System.out.println(Arrays.deepToString(prices));
+        System.out.println("BuildingsAdapter.initialize: prices= " + Arrays.deepToString(prices));
     }
 
     @NonNull
