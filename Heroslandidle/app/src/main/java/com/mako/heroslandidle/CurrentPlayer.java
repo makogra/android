@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 public class CurrentPlayer {
 
+    //TODO add geting current player through preferences
+
     private static volatile Player currentPlayer;
     private static Resources resources;
 
