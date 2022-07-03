@@ -78,5 +78,13 @@ public class Player  implements Serializable {
         buildings[index] = value;
     }
 
-
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerId='" + playerId + '\'' +
+                ", equipment=" + Arrays.toString(equipment) +
+                ", buildings=" + Arrays.toString(buildings) +
+                ", money=" + money +
+                '}';
+    }
 }
