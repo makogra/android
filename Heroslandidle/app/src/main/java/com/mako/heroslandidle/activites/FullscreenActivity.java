@@ -1,13 +1,11 @@
 package com.mako.heroslandidle.activites;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -22,12 +20,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.adapters.FragmentAdapterTabs;
-import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.database.PlayerRepository;
 import com.mako.heroslandidle.databinding.ActivityFullscreenBinding;
 import com.mako.heroslandidle.tabs.EquipmentViewModel;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FullscreenActivity extends AppCompatActivity {
 
@@ -45,7 +45,6 @@ public class FullscreenActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
-    private Player player1;
     private EquipmentViewModel equipmentViewModel;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -56,13 +55,14 @@ public class FullscreenActivity extends AppCompatActivity {
 
         com.mako.heroslandidle.databinding.ActivityFullscreenBinding binding = ActivityFullscreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        initPlayer();
 
         equipmentViewModel = new ViewModelProvider(this).get(EquipmentViewModel.class);
 
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
 
-        initPlayer();
+
         initTabs();
 
         // Drawer layout
@@ -109,15 +109,15 @@ public class FullscreenActivity extends AppCompatActivity {
         PlayerRepository playerRepository = new PlayerRepository(getApplication());
         playerRepository.getPlayer("BadChess").observe(this, player -> {
             if (player != null){
-                Player.setINSTANCE(player);
+                CurrentPlayer.setCurrentPlayer(player);
             } else {
-                player1 = Player.getInstance();
-                player1.setId("BadChess");
-                player1.setResources(getResources());
-                player1.initialize();
+                CurrentPlayer.getInstance();
+                CurrentPlayer.setsCurrentPlayerId("BadChess");
+                CurrentPlayer.setResources(getResources());
+                CurrentPlayer.initialize();
+                playerRepository.insert(CurrentPlayer.getInstance());
             }
         });
-
     }
 
     @Override

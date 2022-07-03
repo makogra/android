@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.activites.ExplorationActivity;
-import com.mako.heroslandidle.activites.FullscreenActivity;
 import com.mako.heroslandidle.database.PlayerRepository;
-
-import java.util.Objects;
 
 public class TownFragment extends Fragment {
 
@@ -45,11 +43,10 @@ public class TownFragment extends Fragment {
     private void save() {
 
         System.out.println("saving");
-        Player p = Player.getInstance();
-        mPlayerRepository.insert(p);
-        System.out.println("p = " + p);
+        mPlayerRepository.insert(CurrentPlayer.getInstance());
+        System.out.println("p = " + CurrentPlayer.toStringConvert());
         System.out.println("saved");
-        mPlayerRepository.getPlayer(p.getId()).observe(getViewLifecycleOwner(), player -> System.out.println("player = " + player));
+        mPlayerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(getViewLifecycleOwner(), player -> System.out.println("player = " + player));
         mPlayerRepository.countPlayers().observe(getViewLifecycleOwner(), integer -> System.out.println("player in DB count = " + integer));
 
     }

@@ -14,7 +14,7 @@ import com.mako.heroslandidle.database.typeconverters.intArrayConverter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Player.class}, version = 1)
+@Database(entities = {Player.class}, version = 2)
 @TypeConverters({intArrayConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -29,6 +29,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "player_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                     /*
                     TODO move it to activity

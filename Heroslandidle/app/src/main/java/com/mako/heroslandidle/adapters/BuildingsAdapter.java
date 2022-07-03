@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 
@@ -24,7 +25,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
 
     private final Context context;
     private final Resources res;
-    private final Player player = Player.getInstance();
     private String[] buildingsTypes,
             buildingsDescriptions;
     private int[] buildingsMaxLvls;
@@ -91,10 +91,10 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     private void build(@NonNull BuildingsViewHolder holder, AtomicInteger currentBuildingLvl, int position) {
         int[] costs = prices[position][currentBuildingLvl.get()];
 
-        player.removeMoney(costs[1]);
+        CurrentPlayer.removeMoney(costs[1]);
 
         for (int i = 2; i < costs.length; i++) {
-            player.removeResources(i-2, costs[i]);
+            CurrentPlayer.removeResources(i-2, costs[i]);
         }
 
         currentBuildingLvl.incrementAndGet();
@@ -132,20 +132,20 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     }
 
     private void displayPlayerEq(){
-        System.out.println("player.getMoney() = " + player.getMoney());
-        System.out.println("player equipment = " + Arrays.toString(player.getEquipment()));
+        System.out.println("player.getMoney() = " + CurrentPlayer.getMoney());
+        System.out.println("player equipment = " + Arrays.toString(CurrentPlayer.getEquipment()));
     }
 
     private boolean canBuild(int buildingTypeIndex, int buildingLvl){
         int[] costs = prices[buildingTypeIndex][buildingLvl];
         boolean canBuild = true;
 
-        if(costs[0] > player.getBuildingLvl(0))
+        if(costs[0] > CurrentPlayer.getBuildingLvl(0))
             canBuild = false;
-        if(costs[1] > player.getMoney())
+        if(costs[1] > CurrentPlayer.getMoney())
             canBuild = false;
         for (int i = 2; i < costs.length; i++) {
-            if (player.getResource(i) < costs[i])
+            if (CurrentPlayer.getResource(i) < costs[i])
                 canBuild = false;
         }
         return canBuild;
@@ -166,7 +166,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     }
 
 
-    public class BuildingsViewHolder extends RecyclerView.ViewHolder {
+    public static class BuildingsViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView type;
         private final TextView description;

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.database.PlayerRepository;
 
@@ -17,7 +18,7 @@ public class EquipmentViewModel extends AndroidViewModel {
     public EquipmentViewModel (@NonNull Application application){
         super(application);
         mRepository = new PlayerRepository(application);
-        mEquipment = mRepository.getEquipment(Player.getCurrentPlayerId());
+        mEquipment = mRepository.getEquipment(CurrentPlayer.getInstance().getPlayerId());
     }
 
     LiveData<int[]> getEquipment(){return mEquipment;}

@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Land;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
@@ -22,8 +23,6 @@ import java.util.Arrays;
 public class ExplorationActivity extends AppCompatActivity {
 
     public static final String PLAYER_NAME = "playerFromExpedition";
-
-    private final Player player = Player.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class ExplorationActivity extends AppCompatActivity {
     }
 
     private void harvestResources(Land.ResourcesField resourcesField) {
-        player.addResources(resourcesField.getResTypeIndex(), resourcesField.getResAmount());
+        CurrentPlayer.addResources(resourcesField.getResTypeIndex(), resourcesField.getResAmount());
         resourcesField.setResAmount(0);
     }
 

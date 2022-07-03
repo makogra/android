@@ -6,12 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.EquipmentViewHolder;
 import com.mako.heroslandidle.Player;
 
 public class EquipmentListAdapter extends ListAdapter<Integer, EquipmentViewHolder> {
-
-    private Player player = Player.getInstance();
 
     protected EquipmentListAdapter(@NonNull DiffUtil.ItemCallback<Integer> diffCallback) {
         super(diffCallback);
@@ -26,7 +25,7 @@ public class EquipmentListAdapter extends ListAdapter<Integer, EquipmentViewHold
     @Override
     public void onBindViewHolder(@NonNull EquipmentViewHolder holder, int position) {
          //= getItem(position);
-        holder.bind(player.getResource(position));
+        holder.bind(CurrentPlayer.getResource(position));
     }
 
     static class PlayerDiff extends DiffUtil.ItemCallback<Integer> {
