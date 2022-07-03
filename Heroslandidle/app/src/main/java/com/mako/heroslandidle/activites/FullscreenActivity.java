@@ -1,5 +1,7 @@
 package com.mako.heroslandidle.activites;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +44,8 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         }
     });*/
+
+    //TODO replace System.out.println with Log.d
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
@@ -106,13 +110,16 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void initPlayer() {
+        //TODO get through preferences
+        SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
+        String id = sp.getString("playerId", "BadChess");
         PlayerRepository playerRepository = new PlayerRepository(getApplication());
-        playerRepository.getPlayer("BadChess").observe(this, player -> {
+        playerRepository.getPlayer(id).observe(this, player -> {
             if (player != null){
                 CurrentPlayer.setCurrentPlayer(player);
             } else {
                 CurrentPlayer.getInstance();
-                CurrentPlayer.setsCurrentPlayerId("BadChess");
+                CurrentPlayer.setsCurrentPlayerId(id);
                 CurrentPlayer.setResources(getResources());
                 CurrentPlayer.initialize();
                 playerRepository.insert(CurrentPlayer.getInstance());

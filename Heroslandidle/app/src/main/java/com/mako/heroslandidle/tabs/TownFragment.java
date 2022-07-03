@@ -1,6 +1,8 @@
 package com.mako.heroslandidle.tabs;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -16,6 +18,8 @@ import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.activites.ExplorationActivity;
 import com.mako.heroslandidle.database.PlayerRepository;
+
+import java.util.Objects;
 
 public class TownFragment extends Fragment {
 
@@ -42,6 +46,10 @@ public class TownFragment extends Fragment {
 
     private void save() {
 
+        SharedPreferences sp = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("playerId", CurrentPlayer.getPlayerId());
+        editor.apply();
         System.out.println("saving");
         mPlayerRepository.insert(CurrentPlayer.getInstance());
         System.out.println("p = " + CurrentPlayer.toStringConvert());
@@ -49,6 +57,15 @@ public class TownFragment extends Fragment {
         mPlayerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(getViewLifecycleOwner(), player -> System.out.println("player = " + player));
         mPlayerRepository.countPlayers().observe(getViewLifecycleOwner(), integer -> System.out.println("player in DB count = " + integer));
 
+    }
+
+    private void load(){
+        //TODO add new activity to select already existing player or create new one
+        /*
+          Challanges:
+           * check if given name(id) already exitsts
+           * popup window to write name
+         */
     }
 
     private void goOnExpedition(View view) {
