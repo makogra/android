@@ -7,6 +7,62 @@
     android:layout_gravity="center"
     android:background="#777">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/popup_accept_btn">
+
+        <TextView
+            android:id="@+id/popup_building_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_building_type"
+            />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/popup_lvl_from_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_building_lvl" />
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arrow"
+            />
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/popup_lvl_to_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_building_lvl"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/popup_needed_resources_text_view"
+        android:layout_width="wrap_content"
+        android:maxWidth="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder_building_description"
+        app:layout_constraintBottom_toTopOf="@id/popup_text_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
         android:id="@+id/popup_text_txt"
         android:layout_width="wrap_content"
@@ -22,20 +78,21 @@
         android:id="@+id/popup_accept_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/popup_cancel_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/popup_text_txt"
-        app:layout_constraintTop_toTopOf="@+id/popup_cancel_btn" />
+        android:layout_marginTop="16dp"
+        android:text="@string/btn_build"
+        app:layout_constraintTop_toBottomOf="@id/popup_text_txt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/popup_text_txt"
+         />
 
     <Button
         android:id="@+id/popup_cancel_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/popup_text_txt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/popup_text_txt" />
+        android:text="@string/cancel"
+        app:layout_constraintStart_toEndOf="@id/popup_text_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/popup_text_txt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

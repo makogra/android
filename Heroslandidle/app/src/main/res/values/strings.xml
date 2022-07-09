@@ -77,4 +77,6 @@
     <string name="res_amount_1" translatable="false">res amount 1</string>
     <string name="res_type_2" translatable="false">res type 2</string>
     <string name="res_amount_2" translatable="false">res amount 2</string>
+    <string name="cancel">Cancel</string>
+    <string name="arrow" translatable="false">❱</string>
 </resources>
