@@ -48,7 +48,6 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     });*/
 
-    //TODO replace System.out.println with Log.d
 
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;

@@ -88,7 +88,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     }
 
     private void build(@NonNull BuildingsViewHolder holder, int position) {
-        //TODO async auto save after build
         int[] costs = prices[position][CurrentPlayer.getBuildingLvl(position)];
 
         CurrentPlayer.removeMoney(costs[1]);
