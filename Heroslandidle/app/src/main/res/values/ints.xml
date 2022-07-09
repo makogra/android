@@ -38,9 +38,9 @@
     </integer-array>
 
     <integer-array name="buildings_max_lvls">
-        <item>5</item>
         <item>2</item>
-        <item>5</item>
-        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
     </integer-array>
 </resources>

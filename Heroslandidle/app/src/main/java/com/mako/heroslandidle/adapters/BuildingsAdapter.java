@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.R;
+import com.mako.heroslandidle.Save;
 
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -71,20 +72,17 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     public void onBindViewHolder(@NonNull BuildingsViewHolder holder, int position) {
         holder.type.setText(buildingsTypes[position]);
         holder.description.setText(buildingsDescriptions[position]);
+        holder.lvl.setText("" + CurrentPlayer.getBuildingLvl(position));
 
         if (isMaxBuildingLvl(position) && holder.buildButton.isEnabled()) {
             setMaxAndDisable(holder.buildButton);
         } else {
-            holder.lvl.setText("" + CurrentPlayer.getBuildingLvl(position));
+
 
             boolean canBuild = canBuild(position);
 
             holder.buildButton.setOnClickListener(view -> {
                 popup(holder, canBuild, position);
-
-                if (isMaxBuildingLvl(position)) {
-                    setMaxAndDisable(holder.buildButton);
-                }
             });
         }
     }
@@ -100,7 +98,13 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         }
 
         CurrentPlayer.upgradeBuilding(position);
-        holder.lvl.setText(String.valueOf(CurrentPlayer.getBuildingLvl(position)));
+        if (isMaxBuildingLvl(position)) {
+            setMaxAndDisable(holder.buildButton);
+        } else {
+            holder.lvl.setText(String.valueOf(CurrentPlayer.getBuildingLvl(position)));
+        }
+
+        new Thread(new Save()).start();
     }
 
     private void popup(BuildingsViewHolder holder, boolean canBuild, int position) {
@@ -148,6 +152,9 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
     }
 
     private boolean canBuild(int buildingTypeIndex){
+        if (isMaxBuildingLvl(buildingTypeIndex)) {
+            return false;
+        }
         int[] costs = prices[buildingTypeIndex][CurrentPlayer.getBuildingLvl(buildingTypeIndex)];
         boolean canBuild = true;
 
