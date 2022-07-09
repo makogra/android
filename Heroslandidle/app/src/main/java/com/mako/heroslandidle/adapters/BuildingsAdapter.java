@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mako.heroslandidle.CurrentPlayer;
-import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 
 import java.util.Arrays;
@@ -71,25 +70,26 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         holder.type.setText(buildingsTypes[position]);
         holder.description.setText(buildingsDescriptions[position]);
 
-        AtomicInteger currentBuildingLvl = new AtomicInteger(Integer.parseInt(holder.lvl.getText().toString()));
-        if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
-            setMaxAndDisable(holder.button);
+        if (isMaxBuildingLvl(position) && holder.buildButton.isEnabled()) {
+            setMaxAndDisable(holder.buildButton);
         } else {
+            holder.lvl.setText("" + CurrentPlayer.getBuildingLvl(position));
 
-            boolean canBuild = canBuild(position, currentBuildingLvl.get());
+            boolean canBuild = canBuild(position);
 
-            holder.button.setOnClickListener(view -> {
-                popup(holder, currentBuildingLvl, canBuild, position);
+            holder.buildButton.setOnClickListener(view -> {
+                popup(holder, canBuild, position);
 
-                if (isMaxBuildingLvl(position, holder.button, currentBuildingLvl.get())) {
-                    setMaxAndDisable(holder.button);
+                if (isMaxBuildingLvl(position)) {
+                    setMaxAndDisable(holder.buildButton);
                 }
             });
         }
     }
 
-    private void build(@NonNull BuildingsViewHolder holder, AtomicInteger currentBuildingLvl, int position) {
-        int[] costs = prices[position][currentBuildingLvl.get()];
+    private void build(@NonNull BuildingsViewHolder holder, int position) {
+        //TODO async auto save after build
+        int[] costs = prices[position][CurrentPlayer.getBuildingLvl(position)];
 
         CurrentPlayer.removeMoney(costs[1]);
 
@@ -97,38 +97,47 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             CurrentPlayer.removeResources(i-2, costs[i]);
         }
 
-        currentBuildingLvl.incrementAndGet();
-        TextView tv_lvl = holder.lvl;
-        tv_lvl.setText(String.valueOf(currentBuildingLvl.get()));
+        CurrentPlayer.upgradeBuilding(position);
+        holder.lvl.setText(String.valueOf(CurrentPlayer.getBuildingLvl(position)));
     }
 
-    private void popup(BuildingsViewHolder holder, AtomicInteger currentBuildingLvl, boolean canBuild, int position) {
+    private void popup(BuildingsViewHolder holder, boolean canBuild, int position) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View customView = layoutInflater.inflate(R.layout.popup, null);
+        View popupMenu = layoutInflater.inflate(R.layout.popup, null);
 
-        Button closePopupBtn = customView.findViewById(R.id.popup_cancel_btn);
-        Button acceptPopupBtn = customView.findViewById(R.id.popup_accept_btn);
+        Button closePopupBtn = popupMenu.findViewById(R.id.popup_cancel_btn);
+        Button acceptPopupBtn = popupMenu.findViewById(R.id.popup_accept_btn);
+        TextView buildingTypeTextView = popupMenu.findViewById(R.id.popup_building_type_text_view);
+        TextView lvlFromTextView = popupMenu.findViewById(R.id.popup_lvl_from_text_view);
+        TextView lvlToTextView = popupMenu.findViewById(R.id.popup_lvl_to_text_view);
+        TextView neededResourcesTextView = popupMenu.findViewById(R.id.popup_needed_resources_text_view);
 
-        PopupWindow popupWindow = new PopupWindow(customView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        buildingTypeTextView.setText(buildingsTypes[position]);
+        lvlFromTextView.setText("" + CurrentPlayer.getBuildingLvl(position));
+        lvlToTextView.setText("" + (CurrentPlayer.getBuildingLvl(position) + 1));
+        neededResourcesTextView.setText(Arrays.toString(prices[position][CurrentPlayer.getBuildingLvl(position)]));
+
+        PopupWindow popupWindow = new PopupWindow(popupMenu, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         popupWindow.showAtLocation(holder.itemView, Gravity.CENTER, 0, 0);
 
         closePopupBtn.setOnClickListener(view -> popupWindow.dismiss());
 
-        if(canBuild) {
-            if(!acceptPopupBtn.isEnabled())
-                acceptPopupBtn.setEnabled(true);
-
-            acceptPopupBtn.setOnClickListener(view -> {
-                displayPlayerEq();
-                build(holder, currentBuildingLvl, position);
-                displayPlayerEq();
-                System.out.println("build succeed");
-                popupWindow.dismiss();
-            });
-        } else {
+        if(!canBuild) {
             acceptPopupBtn.setEnabled(false);
+            return;
         }
+
+        if(!acceptPopupBtn.isEnabled())
+            acceptPopupBtn.setEnabled(true);
+
+        acceptPopupBtn.setOnClickListener(view -> {
+            displayPlayerEq();
+            build(holder, position);
+            displayPlayerEq();
+            System.out.println("build succeed");
+            popupWindow.dismiss();
+        });
     }
 
     private void displayPlayerEq(){
@@ -136,8 +145,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         System.out.println("player equipment = " + Arrays.toString(CurrentPlayer.getEquipment()));
     }
 
-    private boolean canBuild(int buildingTypeIndex, int buildingLvl){
-        int[] costs = prices[buildingTypeIndex][buildingLvl];
+    private boolean canBuild(int buildingTypeIndex){
+        int[] costs = prices[buildingTypeIndex][CurrentPlayer.getBuildingLvl(buildingTypeIndex)];
         boolean canBuild = true;
 
         if(costs[0] > CurrentPlayer.getBuildingLvl(0))
@@ -145,7 +154,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         if(costs[1] > CurrentPlayer.getMoney())
             canBuild = false;
         for (int i = 2; i < costs.length; i++) {
-            if (CurrentPlayer.getResource(i) < costs[i])
+            if (CurrentPlayer.getResource(i-2) < costs[i])
                 canBuild = false;
         }
         return canBuild;
@@ -156,8 +165,8 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         return buildingsTypes.length;
     }
 
-    private boolean isMaxBuildingLvl(int position, Button button, int lvl) {
-        return (lvl == buildingsMaxLvls[position] && button.isEnabled());
+    private boolean isMaxBuildingLvl(int position) {
+        return (CurrentPlayer.getBuildingLvl(position) == buildingsMaxLvls[position]);
     }
 
     private void setMaxAndDisable(Button button) {
@@ -171,14 +180,14 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
         private final TextView type;
         private final TextView description;
         private final TextView lvl;
-        private final Button button;
+        private final Button buildButton;
 
         public BuildingsViewHolder(@NonNull View itemView) {
             super(itemView);
             this.type = itemView.findViewById(R.id.buildings_row_type_txt);
             this.description = itemView.findViewById(R.id.buildings_row_description_txt);
             this.lvl = itemView.findViewById(R.id.buildings_row_lvl_txt_numeric);
-            this.button = itemView.findViewById(R.id.buildings_row_build_btn);
+            this.buildButton = itemView.findViewById(R.id.buildings_row_build_btn);
         }
     }
 }

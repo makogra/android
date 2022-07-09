@@ -171,4 +171,16 @@ public class CurrentPlayer {
                 ", money=" + currentPlayer.getMoney() +
                 '}';
     }
+
+    public static boolean upgradeBuilding(int position) {
+        int lvl;
+        try{
+            lvl = getBuildingLvl(position);
+            lvl++;
+            currentPlayer.setBuildingsAt(position, lvl);
+            return true;
+        }catch (IndexOutOfBoundsException e){
+            return false;
+        }
+    }
 }
