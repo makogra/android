@@ -24,6 +24,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mako.heroslandidle.CurrentPlayer;
+import com.mako.heroslandidle.Save;
 import com.mako.heroslandidle.adapters.FragmentAdapterTabs;
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.database.PlayerRepository;
@@ -68,11 +69,19 @@ public class FullscreenActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabs);
         viewPager2 = findViewById(R.id.view_pager2);
 
-
         initTabs();
-
         // Drawer layout
         initDrawerLayout();
+        Save.init(getApplication());
+
+        new Thread(this::observeDB);
+    }
+
+    private void observeDB() {
+        PlayerRepository playerRepository = new PlayerRepository(getApplication());
+
+        playerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(this, player -> Log.d(TAG, "player = " + player));
+        playerRepository.countPlayers().observe(this, integer -> Log.d(TAG, "player in DB count = " + integer));
 
     }
 

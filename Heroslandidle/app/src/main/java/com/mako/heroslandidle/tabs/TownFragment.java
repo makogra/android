@@ -17,6 +17,7 @@ import android.widget.Button;
 import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
+import com.mako.heroslandidle.Save;
 import com.mako.heroslandidle.activites.ExplorationActivity;
 import com.mako.heroslandidle.database.PlayerRepository;
 
@@ -47,18 +48,7 @@ public class TownFragment extends Fragment {
     }
 
     private void save() {
-
-        SharedPreferences sp = requireActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("playerId", CurrentPlayer.getPlayerId());
-        editor.apply();
-        Log.d(TAG, "saving");
-        mPlayerRepository.insert(CurrentPlayer.getInstance());
-        Log.d(TAG, "p = " + CurrentPlayer.toStringConvert());
-        Log.d(TAG, "saved");
-        mPlayerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(getViewLifecycleOwner(), player -> Log.d(TAG, "player = " + player));
-        mPlayerRepository.countPlayers().observe(getViewLifecycleOwner(), integer -> Log.d(TAG, "player in DB count = " + integer));
-
+        new Thread(new Save()).start();
     }
 
     private void load(){
