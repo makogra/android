@@ -31,15 +31,6 @@ public abstract class AppDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "player_database")
                             .fallbackToDestructiveMigration()
                             .build();
-                    /*
-                    TODO move it to activity
-                    if (INSTANCE.playerDao().count() == 0){
-                        Player player = Player.getInstance();
-                        player.setId("New player");
-                        INSTANCE.playerDao().insert(player);
-                    }
-
-                     */
                 }
             }
         return INSTANCE;

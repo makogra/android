@@ -120,7 +120,6 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     private void initPlayer() {
-        //TODO get through preferences
         SharedPreferences sp = getPreferences(Context.MODE_PRIVATE);
         String id = sp.getString("playerId", "BadChess");
         PlayerRepository playerRepository = new PlayerRepository(getApplication());
