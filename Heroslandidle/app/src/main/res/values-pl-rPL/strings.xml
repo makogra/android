@@ -52,4 +52,5 @@
         <item>Daje Punkty Wiary</item>
         <item>Dodaje Questy</item>
     </string-array>
+    <string name="cancel">Anuluj</string>
 </resources>
