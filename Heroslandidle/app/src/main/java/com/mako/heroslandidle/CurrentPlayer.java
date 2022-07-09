@@ -1,12 +1,14 @@
 package com.mako.heroslandidle;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import java.util.Arrays;
 
 public class CurrentPlayer {
+    private static final String TAG = "CurrentPlayer";
 
     //TODO add geting current player through preferences
 
@@ -29,7 +31,7 @@ public class CurrentPlayer {
                     try{
                         initialize();
                     }catch (NullPointerException e){
-                        System.out.println(CurrentPlayer.class + " " +e);
+                        Log.d(TAG, CurrentPlayer.class + " " +e);
                     }
                 }
             }

@@ -1,6 +1,7 @@
 package com.mako.heroslandidle;
 
 import android.content.res.Resources;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -33,7 +34,9 @@ public class Land {
         //Config
         private static final float RES_BOUND = 8.0F;
         private static final int RES_MINIMUM = 16;
-        
+
+        private static final String TAG = "ResourcesField in Land";
+
         // "res" stands for resources like gold, iron wood ...
         private String resType;
         private int resAmount;
@@ -69,7 +72,7 @@ public class Land {
             float temp = resTypes.length / (float) BIOMS_LENGTH;
             int result = (int)((temp * random.nextGaussian()) + (temp * (BIOM_INDEX+1))) % resTypes.length;
             result = Math.abs(result);
-            System.out.println("result = " + result);
+            Log.d(TAG, "result = " + result);
             return result;
         }
         

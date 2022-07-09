@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import java.util.Objects;
 
 public class TownFragment extends Fragment {
 
+    private static final String TAG = "TownFragment";
     PlayerRepository mPlayerRepository;
 
     public TownFragment() {
@@ -50,12 +52,12 @@ public class TownFragment extends Fragment {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("playerId", CurrentPlayer.getPlayerId());
         editor.apply();
-        System.out.println("saving");
+        Log.d(TAG, "saving");
         mPlayerRepository.insert(CurrentPlayer.getInstance());
-        System.out.println("p = " + CurrentPlayer.toStringConvert());
-        System.out.println("saved");
-        mPlayerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(getViewLifecycleOwner(), player -> System.out.println("player = " + player));
-        mPlayerRepository.countPlayers().observe(getViewLifecycleOwner(), integer -> System.out.println("player in DB count = " + integer));
+        Log.d(TAG, "p = " + CurrentPlayer.toStringConvert());
+        Log.d(TAG, "saved");
+        mPlayerRepository.getPlayer(CurrentPlayer.getPlayerId()).observe(getViewLifecycleOwner(), player -> Log.d(TAG, "player = " + player));
+        mPlayerRepository.countPlayers().observe(getViewLifecycleOwner(), integer -> Log.d(TAG, "player in DB count = " + integer));
 
     }
 

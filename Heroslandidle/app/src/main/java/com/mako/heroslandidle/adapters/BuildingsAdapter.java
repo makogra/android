@@ -3,6 +3,7 @@ package com.mako.heroslandidle.adapters;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.BuildingsViewHolder> {
 
+    private static final String TAG = "BuildingsAdapter";
     private final Context context;
     private final Resources res;
     private String[] buildingsTypes,
@@ -54,7 +56,7 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             lvlArray.recycle();
         }
         typesArray.recycle();
-        System.out.println("BuildingsAdapter.initialize: prices= " + Arrays.deepToString(prices));
+        Log.d(TAG, "BuildingsAdapter.initialize: prices= " + Arrays.deepToString(prices));
     }
 
     @NonNull
@@ -135,14 +137,14 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.Buil
             displayPlayerEq();
             build(holder, position);
             displayPlayerEq();
-            System.out.println("build succeed");
+            Log.d(TAG, "build succeed");
             popupWindow.dismiss();
         });
     }
 
     private void displayPlayerEq(){
-        System.out.println("player.getMoney() = " + CurrentPlayer.getMoney());
-        System.out.println("player equipment = " + Arrays.toString(CurrentPlayer.getEquipment()));
+        Log.d(TAG, "player.getMoney() = " + CurrentPlayer.getMoney());
+        Log.d(TAG, "player equipment = " + Arrays.toString(CurrentPlayer.getEquipment()));
     }
 
     private boolean canBuild(int buildingTypeIndex){

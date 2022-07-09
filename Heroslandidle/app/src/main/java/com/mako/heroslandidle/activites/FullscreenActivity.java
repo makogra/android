@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.mako.heroslandidle.tabs.EquipmentViewModel;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FullscreenActivity extends AppCompatActivity {
+    private static final String TAG = "FullscreenActivity";
 
     /*ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -130,14 +132,14 @@ public class FullscreenActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        System.out.println("item selected: " + item + " id = " + id);
+        Log.d(TAG, "item selected: " + item + " id = " + id);
         if(id == R.id.nav_menu_account) {
             //TODO account method
-            System.out.println("account");
+            Log.d(TAG, "account");
         } else if (id == R.id.nav_menu_save){
-            System.out.println("save");
+            Log.d(TAG, "save");
         } else if (id == R.id.nav_menu_exit){
-            System.out.println("exit");
+            Log.d(TAG, "exit");
             finishAndRemoveTask();
         }
         return super.onOptionsItemSelected(item);
