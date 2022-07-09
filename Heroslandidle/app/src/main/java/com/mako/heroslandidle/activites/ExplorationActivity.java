@@ -1,6 +1,5 @@
 package com.mako.heroslandidle.activites;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +12,8 @@ import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.mako.heroslandidle.CurrentPlayer;
 import com.mako.heroslandidle.Land;
-import com.mako.heroslandidle.Player;
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.databinding.ActivityExplorationBinding;
-
-import java.util.Arrays;
 
 
 public class ExplorationActivity extends AppCompatActivity {

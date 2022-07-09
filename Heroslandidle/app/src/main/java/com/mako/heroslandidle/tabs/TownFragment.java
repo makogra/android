@@ -1,27 +1,19 @@
 package com.mako.heroslandidle.tabs;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.mako.heroslandidle.CurrentPlayer;
-import com.mako.heroslandidle.Player;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.mako.heroslandidle.R;
 import com.mako.heroslandidle.Save;
 import com.mako.heroslandidle.activites.ExplorationActivity;
 import com.mako.heroslandidle.database.PlayerRepository;
-
-import java.util.Objects;
 
 public class TownFragment extends Fragment {
 
