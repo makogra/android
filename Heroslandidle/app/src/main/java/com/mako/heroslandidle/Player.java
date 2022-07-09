@@ -13,10 +13,6 @@ import java.util.Arrays;
 @Entity(tableName = "player_table")
 public class Player  implements Serializable {
 
-    //TODO operate on static methods get and set. So the player instance need only to be updated here (INSTANCE) and everywhere will be up-to-date data.
-
-    //TODO maybe create class called currentPlayer and have there all methods and so on, and leave only necessary methods and fields to create in DB
-
     @NonNull
     @PrimaryKey
     private  String playerId;

@@ -10,8 +10,6 @@ import java.util.Arrays;
 public class CurrentPlayer {
     private static final String TAG = "CurrentPlayer";
 
-    //TODO add geting current player through preferences
-
     private static volatile Player currentPlayer;
     private static Resources resources;
 
